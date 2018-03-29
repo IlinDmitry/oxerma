@@ -47,6 +47,8 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  rescue ActiveRecord::RecordNotFound => e
+    redirect_to users_path, notice: e.message
   end
   private :set_user
 
