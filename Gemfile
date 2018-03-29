@@ -28,15 +28,17 @@ gem 'redis', '~> 4.0'
 gem 'bcrypt', '~> 3.1.7'
 
 # Use ActiveStorage variant
-# gem 'mini_magick', '~> 4.8'
+gem 'mini_magick', '~> 4.8'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
 # Haml-rails provides Haml generators for Rails. It also enables Haml as the templating engine
-gem "haml-rails", "~> 1.0"
+gem 'haml-rails', '~> 1.0'
 
 group :development, :test do
+  # Rspec-rails is a testing framework for Rails
+  gem 'rspec-rails', '~> 3.7'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
