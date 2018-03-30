@@ -13,5 +13,10 @@ class User < ApplicationRecord
 
   validates :password,
             length: {minimum: 8},
-            presence: true
+            on: :create
+
+  validates :password,
+            length: {minimum: 8},
+            unless: lambda{password.nil?},
+            on: :update
 end
