@@ -39,6 +39,8 @@ gem 'haml-rails', '~> 1.0'
 group :development, :test do
   # Rspec-rails is a testing framework for Rails
   gem 'rspec-rails', '~> 3.7'
+  # Is a fixtures replacement with a straightforward definition syntax, support for multiple build strategies
+  gem 'factory_bot_rails'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
