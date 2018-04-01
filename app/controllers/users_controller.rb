@@ -51,9 +51,11 @@ class UsersController < ApplicationController
   end
 
   def set_user
-    @user = User.find(params[:id])
+    is_current = authenticated_user? && current_user.id.eql?(params[:id].to_i)
+    @user = is_current ? current_user : User.find(params[:id])
   rescue ActiveRecord::RecordNotFound => e
-    redirect_to users_path, notice: e.message
+    redirect_to authenticated_user? ? users_path : root_path,
+                notice: e.message
   end
   private :set_user
 
