@@ -1,0 +1,20 @@
+%nav.navbar.navbar-expand-lg.navbar-light.bg-light
+  = link_to 'OXERMA', authenticated_user? ? current_user : root_path, class: 'navbar-brand'
+  %button.navbar-toggler{"aria-controls" => "navbarNavDropdown", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarNavDropdown", "data-toggle" => "collapse", type: "button"}
+    %span.navbar-toggler-icon
+  .collapse.navbar-collapse
+    %ul.navbar-nav
+      - if authenticated_user?
+        %li.nav-item
+          = link_to 'Users', users_path, class: 'nav-link'
+        %li.nav-item.dropdown
+          %a.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#"}
+            Account
+          .dropdown-menu
+            = link_to 'Settings', edit_user_path(current_user), class: 'dropdown-item'
+            = link_to 'Sign out', :sessions, method: :delete, class: 'dropdown-item'
+      - else
+        %li.nav-item
+          = link_to 'Sign in', new_sessions_path, class: 'nav-link'
+        %li.nav-item
+          = link_to 'Sign up', new_user_path, class: 'nav-link'
