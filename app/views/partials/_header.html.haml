@@ -3,15 +3,20 @@
   %button.navbar-toggler{"aria-controls" => "navbarNavDropdown", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarNavDropdown", "data-toggle" => "collapse", type: "button"}
     %span.navbar-toggler-icon
   .collapse.navbar-collapse
-    %ul.navbar-nav
+    %ul.navbar-nav.ml-auto
       - if authenticated_user?
         %li.nav-item
           = link_to 'Users', users_path, class: 'nav-link'
         %li.nav-item.dropdown
           %a.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#"}
-            Account
+            = current_user.email.split('@')[0]
           .dropdown-menu
+            = link_to 'Account', user_path(current_user), class: 'dropdown-item'
+            .dropdown-divider
+            = link_to 'Edit', edit_user_path(current_user), class: 'dropdown-item'
             = link_to 'Settings', edit_user_path(current_user), class: 'dropdown-item'
+            = link_to 'Help', edit_user_path(current_user), class: 'dropdown-item'
+            .dropdown-divider
             = link_to 'Sign out', :sessions, method: :delete, class: 'dropdown-item'
       - else
         %li.nav-item
