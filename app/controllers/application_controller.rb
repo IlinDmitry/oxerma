@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include SessionHelper
 
   rescue_from ActionController::InvalidAuthenticityToken,
               with: :invalid_authenticity_token
