@@ -36,6 +36,12 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # Haml-rails provides Haml generators for Rails. It also enables Haml as the templating engine
 gem 'haml-rails', '~> 1.0'
 
+# Build responsive, mobile-first projects on the web with the world's most popular front-end component library.
+gem 'bootstrap', '~> 4.0.0'
+
+# Bootstrap JavaScript depends on jQuery
+gem 'jquery-rails'
+
 group :development, :test do
   # Rspec-rails is a testing framework for Rails
   gem 'rspec-rails', '~> 3.7'
