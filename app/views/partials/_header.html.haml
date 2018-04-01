@@ -2,7 +2,7 @@
   = link_to 'OXERMA', authenticated_user? ? current_user : root_path, class: 'navbar-brand'
   %button.navbar-toggler{"aria-controls" => "navbarNavDropdown", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarNavDropdown", "data-toggle" => "collapse", type: "button"}
     %span.navbar-toggler-icon
-  .collapse.navbar-collapse
+  #navbarNavDropdown.collapse.navbar-collapse
     %ul.navbar-nav.ml-auto
       - if authenticated_user?
         %li.nav-item
