@@ -1,7 +1,11 @@
 module SessionHelper
   def current_user
     return unless session[:user_id]
-    @current_user ||= User.find session[:user_id]
+    @current_user ||= begin
+        User.find session[:user_id]
+      rescue ActiveRecord::RecordNotFound
+        nil
+      end
   end
 
   def authenticated_user?; current_user; end
