@@ -11,6 +11,21 @@ class User < ApplicationRecord
             uniqueness: {case_sensitive: false},
             presence: true
 
+  validates :phone,
+            length: {maximum: 15}
+
+  validates :first_name,
+            length: {maximum: 25}
+
+  validates :middle_name,
+            length: {maximum: 25}
+
+  validates :last_name,
+            length: {maximum: 25}
+
+  validates :biography,
+            length: {maximum: 500}
+
   validates :password,
             length: {minimum: 8},
             on: :create

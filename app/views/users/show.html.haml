@@ -3,6 +3,30 @@
 %p
   %b Email:
   = @user.email
+%p
+  %b Phone:
+  = @user.phone
+%p
+  %b Birthday:
+  = @user.birthday
+%p
+  %b First name:
+  = @user.first_name
+%p
+  %b Middle name:
+  = @user.middle_name
+%p
+  %b Last_name:
+  = @user.last_name
+%p
+  %b Biography:
+  = @user.biography
+%p
+  %b Country:
+  = @user.country_id
+%p
+  %b City:
+  = @user.city_id
 
 = link_to 'Edit', edit_user_path(@user)
 \|

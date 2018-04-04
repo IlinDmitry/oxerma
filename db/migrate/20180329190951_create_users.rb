@@ -9,6 +9,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.text        :biography,       null: true, default: nil, limit: 500
       t.integer     :country_id,      null: true, default: nil
       t.integer     :city_id,         null: true, default: nil
+      t.date        :birthday,        null: true, default: nil
       t.string      :password_digest, null: false
       t.timestamps
     end

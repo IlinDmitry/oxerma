@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
-    @user = User.new(user_params)
+    @user = User.new(user_new_params)
 
     if @user.save
       redirect_to root_path, notice: 'User was successfully created.'
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   def update
-    if @user.update(user_params)
+    if @user.update(user_edit_params)
       redirect_to @user, notice: 'User was successfully updated.'
     else
       render :edit
@@ -58,8 +58,22 @@ class UsersController < ApplicationController
   end
   private :set_user
 
-  def user_params
-    params.require(:user).permit(:email, :role, :password, :password_confirmation)
+  def user_new_params
+    params
+        .require(:user)
+        .permit(:email, :password, :password_confirmation)
   end
-  private :user_params
+  private :user_new_params
+
+  def user_edit_params
+    params
+        .require(:user)
+        .permit(
+            :email, :phone, :first_name,
+            :middle_name, :last_name, :biography,
+            :country_id, :city_id, :birthday,
+            :password, :password_confirmation
+        )
+  end
+  private :user_edit_params
 end

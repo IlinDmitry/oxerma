@@ -1,0 +1,39 @@
+= form_for @user do |f|
+
+  = render partial: 'partials/errors', locals: {model: @user}
+
+  .field
+    = f.label :email
+    = f.text_field :email
+  .field
+    = f.label :phone
+    = f.text_field :phone
+  .field
+    = f.label :birthday
+    = f.date_field :birthday
+  .field
+    = f.label :first_name
+    = f.text_field :first_name
+  .field
+    = f.label :middle_name
+    = f.text_field :middle_name
+  .field
+    = f.label :last_name
+    = f.text_field :last_name
+  .field
+    = f.label :biography
+    = f.text_area :biography
+  .field
+    = f.label :country
+    = f.text_field :country_id
+  .field
+    = f.label :city
+    = f.text_field :city_id
+  .field
+    = f.label :password
+    = f.password_field :password
+  .field
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation
+  .actions
+    = f.submit 'Save'
