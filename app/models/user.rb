@@ -5,6 +5,7 @@ class User < ApplicationRecord
   REGEX_EMAIL = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   attr_accessor :virtual_role
+  attr_accessor :skip_after_create_assign_role
 
   after_create :assign_role
 
@@ -47,6 +48,8 @@ class User < ApplicationRecord
   private
 
   def assign_role
-    add_role self.virtual_role || 'default'
+    unless skip_after_create_assign_role
+      add_role self.virtual_role || 'default'
+    end
   end
 end
