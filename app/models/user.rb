@@ -4,7 +4,9 @@ class User < ApplicationRecord
 
   REGEX_EMAIL = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
-  before_save {self.email.downcase!}
+  attr_accessor :virtual_role
+
+  after_create :assign_role
 
   validates :email,
             length: {maximum: 50},
@@ -33,6 +35,18 @@ class User < ApplicationRecord
 
   validates :password,
             length: {minimum: 8},
-            unless: lambda{password.nil?},
+            unless: lambda {password.nil?},
             on: :update
+
+  validates :virtual_role,
+            inclusion: {in: %w(consumer producer)},
+            unless: lambda {self.virtual_role.blank?},
+            on: :create,
+            presence: true
+
+  private
+
+  def assign_role
+    add_role self.virtual_role || 'default'
+  end
 end

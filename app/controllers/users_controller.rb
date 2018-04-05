@@ -60,10 +60,10 @@ class UsersController < ApplicationController
   end
 
   def user_new_params
-    params.require(:user).permit :email, :password, :password_confirmation
+    params.require(:user).permit :email, :virtual_role, :password, :password_confirmation
   end
 
   def user_edit_params
-    params.require(:user).permit :email, :phone, :first_name, :middle_name, :last_name, :biography, :country_id, :city_id, :birthday, :password, :password_confirmation
+    params.require(:user).permit :email, :phone, :first_name, :middle_name, :last_name, :biography, :country_id, :city_id, :birthday, :password, :password_confirmation, :virtual_role
   end
 end
