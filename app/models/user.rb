@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  rolify
   has_secure_password
 
   REGEX_EMAIL = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

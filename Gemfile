@@ -33,6 +33,8 @@ gem 'haml-rails', '~> 1.0'
 gem 'bootstrap', '~> 4.0.0'
 # Bootstrap JavaScript depends on jQuery
 gem 'jquery-rails'
+# Roles library supporting scope on resource object
+gem 'rolify'
 
 group :development, :test do
   # Rspec-rails is a testing framework for Rails
