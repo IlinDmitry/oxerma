@@ -50,30 +50,20 @@ class UsersController < ApplicationController
     redirect_to users_url, notice: 'User was successfully destroyed.'
   end
 
+  private
+
   def set_user
     is_current = current_user.id.eql? params[:id].to_i
     @user = is_current ? current_user : User.find(params[:id])
   rescue ActiveRecord::RecordNotFound => e
     redirect_to users_path, notice: e.message
   end
-  private :set_user
 
   def user_new_params
-    params
-        .require(:user)
-        .permit(:email, :password, :password_confirmation)
+    params.require(:user).permit :email, :password, :password_confirmation
   end
-  private :user_new_params
 
   def user_edit_params
-    params
-        .require(:user)
-        .permit(
-            :email, :phone, :first_name,
-            :middle_name, :last_name, :biography,
-            :country_id, :city_id, :birthday,
-            :password, :password_confirmation
-        )
+    params.require(:user).permit :email, :phone, :first_name, :middle_name, :last_name, :biography, :country_id, :city_id, :birthday, :password, :password_confirmation
   end
-  private :user_edit_params
 end
