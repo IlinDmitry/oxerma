@@ -1,12 +1,12 @@
-%h1 Sign in
-
-= form_for :session, url: sessions_path do |f|
-  .field
-    = f.label :email
-    = f.email_field :email
-  .field
-    = f.label :password
-    = f.password_field :password
-  = f.submit 'Sign in'
-%p
-  = link_to 'Sign up now!', new_user_path
+.container
+  %h1 Sign in
+  = form_for :session, url: sessions_path do |f|
+    .field
+      = f.label :email
+      = f.email_field :email
+    .field
+      = f.label :password
+      = f.password_field :password
+    = f.submit 'Sign in'
+  %p
+    = link_to 'Sign up now!', new_user_path
