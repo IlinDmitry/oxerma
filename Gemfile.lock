@@ -140,6 +140,8 @@ GEM
     pg (1.0.0)
     popper_js (1.12.9)
     puma (3.11.3)
+    pundit (1.1.0)
+      activesupport (>= 3.0.0)
     rack (2.0.4)
     rack-test (1.0.0)
       rack (>= 1.0, < 3)
@@ -258,6 +260,7 @@ DEPENDENCIES
   mini_magick (~> 4.8)
   pg (>= 0.18, < 2.0)
   puma (~> 3.11)
+  pundit
   rails (~> 5.2.0.rc2)
   redis (~> 4.0)
   rolify

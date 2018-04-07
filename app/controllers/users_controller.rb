@@ -1,10 +1,7 @@
 class UsersController < ApplicationController
-  before_action :require_authentication,
-                only: [:index, :show, :edit, :update, :destroy]
-  before_action :not_require_authentication,
-                only: [:new, :create]
-  before_action :set_user,
-                only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action only: [:show, :edit, :update, :destroy] {authorize @user}
+  before_action only: [:index, :new, :create] {authorize User}
 
   # GET /users
   def index

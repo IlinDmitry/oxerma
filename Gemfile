@@ -35,6 +35,8 @@ gem 'bootstrap', '~> 4.0.0'
 gem 'jquery-rails'
 # Roles library supporting scope on resource object
 gem 'rolify'
+# Authorization through OO design and pure Ruby classes
+gem 'pundit'
 
 group :development, :test do
   # Rspec-rails is a testing framework for Rails
