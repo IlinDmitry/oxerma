@@ -9,16 +9,4 @@ module SessionHelper
   end
 
   def user_authenticated?; current_user; end
-
-  def require_authentication
-    unless user_authenticated?
-      redirect_to root_path, notice: 'Please sign in or register'
-    end
-  end
-
-  def not_require_authentication
-    if user_authenticated?
-      redirect_to root_path, notice: 'Please sign out on your account'
-    end
-  end
 end
