@@ -20,10 +20,10 @@ class OrganizationPolicy < ApplicationPolicy
   end
 
   def update?
-    @user.try :has_role?, :admin, @record
+    @user.try :has_cached_role?, :admin, @record
   end
 
   def destroy?
-    @user.try :has_role?, :admin, @record
+    @user.try :has_cached_role?, :admin, @record
   end
 end
