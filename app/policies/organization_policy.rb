@@ -4,7 +4,7 @@ class OrganizationPolicy < ApplicationPolicy
   end
 
   def show?
-    true
+    @user
   end
 
   def new?
