@@ -24,7 +24,6 @@ class UsersController < ApplicationController
   # POST /users
   def create
     @user = User.new(user_new_params)
-
     if @user.save
       redirect_to root_path, flash: {notice: 'User was successfully created.'}
     else
@@ -53,7 +52,7 @@ class UsersController < ApplicationController
     is_current = current_user.id.eql? params[:id].to_i
     @user = is_current ? current_user : User.find(params[:id])
   rescue ActiveRecord::RecordNotFound => e
-    redirect_to users_path, notice: e.message
+    redirect_to users_path, flash: {alert: e.message}
   end
 
   def user_new_params
