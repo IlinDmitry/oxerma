@@ -9,6 +9,10 @@ class User < ApplicationRecord
 
   after_create :assign_role
 
+  has_many :users_organizations
+  has_many :organizations,
+           through: :users_organizations
+
   validates :email,
             length: {maximum: 50},
             format: {with: REGEX_EMAIL},
