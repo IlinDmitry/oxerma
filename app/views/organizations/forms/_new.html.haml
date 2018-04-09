@@ -1,10 +1,6 @@
 = form_for @organization do |f|
-  - if @organization.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@organization.errors.count, "error")} prohibited this organization from being saved:"
-      %ul
-        - @organization.errors.full_messages.each do |message|
-          %li= message
+
+  = render partial: 'partials/errors', locals: {model: @organization}
 
   .field
     = f.label :title
