@@ -1,0 +1,2 @@
+class UsersOrganization < ApplicationRecord
+end
