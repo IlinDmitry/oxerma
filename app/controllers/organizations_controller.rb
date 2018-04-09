@@ -1,5 +1,7 @@
 class OrganizationsController < ApplicationController
   before_action :set_organization, only: [:show, :edit, :update, :destroy]
+  before_action only: [:show, :edit, :update, :destroy] {authorize @organization}
+  before_action only: [:index, :new, :create] {authorize Organization}
 
   # GET /organizations
   def index
@@ -21,9 +23,9 @@ class OrganizationsController < ApplicationController
 
   # POST /organizations
   def create
-    @organization = Organization.new organization_new_params
-    current_user.organizations << @organization
-    if current_user.save
+    @organization = current_user.organizations.create organization_new_params
+    if @organization
+      current_user.add_role :admin, @organization
       redirect_to @organization, flash: {notice: 'Organization was successfully created.'}
     else
       render :new
@@ -50,7 +52,7 @@ class OrganizationsController < ApplicationController
   def set_organization
     @organization = Organization.find params[:id]
   rescue ActiveRecord::RecordNotFound => e
-    redirect_to organization_path, flash: {alert: e.message}
+    redirect_to organizations_path, flash: {alert: e.message}
   end
 
   def organization_new_params
