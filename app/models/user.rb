@@ -14,31 +14,23 @@ class User < ApplicationRecord
             format: {with: REGEX_EMAIL},
             uniqueness: {case_sensitive: false},
             presence: true
-
   validates :phone,
             length: {maximum: 15}
-
   validates :first_name,
             length: {maximum: 25}
-
   validates :middle_name,
             length: {maximum: 25}
-
   validates :last_name,
             length: {maximum: 25}
-
   validates :biography,
             length: {maximum: 500}
-
   validates :password,
             length: {minimum: 8},
             on: :create
-
   validates :password,
             length: {minimum: 8},
             unless: lambda {password.nil?},
             on: :update
-
   validates :virtual_role,
             inclusion: {in: %w(consumer producer)},
             unless: lambda {self.virtual_role.blank?},
