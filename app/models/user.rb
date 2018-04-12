@@ -7,11 +7,13 @@ class User < ApplicationRecord
   attr_accessor :virtual_role
   attr_accessor :skip_after_create_assign_role
 
-  after_create :assign_role
+  after_create :assign_role,
+               unless: Proc.new { |user| user.skip_after_create_assign_role }
 
   has_many :users_organizations
   has_many :organizations,
-           through: :users_organizations
+           through: :users_organizations,
+           dependent: :destroy
 
   validates :email,
             length: {maximum: 50},
@@ -44,8 +46,6 @@ class User < ApplicationRecord
   private
 
   def assign_role
-    unless skip_after_create_assign_role
-      add_role self.virtual_role || 'default'
-    end
+    add_role self.virtual_role || Role::TYPE_UNDEFINED
   end
 end

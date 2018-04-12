@@ -3,7 +3,8 @@ class Organization < ApplicationRecord
 
   has_many :users_organizations
   has_many :users,
-           through: :users_organizations
+           through: :users_organizations,
+           dependent: :destroy
 
   validates :title,
             presence: true
