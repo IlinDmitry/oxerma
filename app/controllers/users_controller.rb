@@ -19,6 +19,10 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    section = ['account', 'secrecy'].detect do |section|
+      break section if params[:section].eql? section
+    end || 'account'
+    render :edit, locals: {section: section}
   end
 
   # POST /users
