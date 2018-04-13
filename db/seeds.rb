@@ -13,5 +13,10 @@
     'Учреждения',
     'Объединения юридических лиц (ассоциации и союзы)'
 ].each do |name|
-  OrganizationType.create! name: name
+  begin
+    # TODO: Сделать уникальный индекс на колонку name или на дополнительную колонку с hash(name)
+    OrganizationType.create! name: name
+  rescue ActiveRecord::RecordNotSaved => e
+    puts e.message
+  end
 end
