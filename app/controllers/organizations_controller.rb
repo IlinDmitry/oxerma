@@ -5,7 +5,7 @@ class OrganizationsController < ApplicationController
 
   # GET /organizations
   def index
-    @organizations = Organization.all
+    @organizations = Organization.includes(:organization_type).all
   end
 
   # GET /organizations/1
@@ -23,8 +23,8 @@ class OrganizationsController < ApplicationController
 
   # POST /organizations
   def create
-    @organization = current_user.organizations.create organization_new_params
-    if @organization
+    @organization = current_user.organizations.build organization_new_params
+    if @organization.save
       current_user.add_role :admin, @organization
       redirect_to @organization, flash: {notice: 'Organization was successfully created.'}
     else
@@ -50,7 +50,7 @@ class OrganizationsController < ApplicationController
   private
 
   def set_organization
-    @organization = Organization.find params[:id]
+    @organization = Organization.includes(:organization_type).find(params[:id])
   rescue ActiveRecord::RecordNotFound => e
     redirect_to organizations_path, flash: {alert: e.message}
   end
