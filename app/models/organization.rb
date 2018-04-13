@@ -5,6 +5,8 @@ class Organization < ApplicationRecord
   has_many :users,
            through: :users_organizations,
            dependent: :destroy
+  belongs_to :organization_type,
+             foreign_key: :type_id
 
   validates :name,
             presence: true
