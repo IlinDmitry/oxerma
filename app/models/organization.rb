@@ -6,8 +6,14 @@ class Organization < ApplicationRecord
            through: :users_organizations,
            dependent: :destroy
 
-  validates :title,
+  validates :name,
             presence: true
-  validates :description,
+  validates :type_id,
             presence: true
+  validates :email,
+            presence: true
+  validates :phone,
+            presence: true
+  validates :biography,
+            length: {maximum: 500}
 end

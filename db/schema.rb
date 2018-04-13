@@ -10,14 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_08_195815) do
+ActiveRecord::Schema.define(version: 2018_04_13_063900) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "organization_types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "organizations", force: :cascade do |t|
-    t.string "title"
-    t.string "description"
+    t.string "name", limit: 25, null: false
+    t.integer "type_id", null: false
+    t.string "email", null: false
+    t.string "phone", null: false
+    t.text "biography"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -34,14 +43,12 @@ ActiveRecord::Schema.define(version: 2018_04_08_195815) do
 
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
-    t.string "phone", limit: 15
+    t.string "phone", null: false
     t.string "first_name", limit: 25
     t.string "middle_name", limit: 25
     t.string "last_name", limit: 25
-    t.text "biography"
-    t.integer "country_id"
-    t.integer "city_id"
     t.date "birthday"
+    t.text "biography"
     t.string "password_digest", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

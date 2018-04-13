@@ -1,10 +1,7 @@
 .container
   %p
     %b Title:
-    = @organization.title
-  %p
-    %b Description:
-    = @organization.description
+    = @organization.name
 
   = policy(@organization).edit? ? link_to('Edit', edit_organization_path(@organization)) : ''
   \|

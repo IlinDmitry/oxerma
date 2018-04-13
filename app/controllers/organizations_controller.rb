@@ -56,10 +56,10 @@ class OrganizationsController < ApplicationController
   end
 
   def organization_new_params
-    params.require(:organization).permit(:title, :description)
+    params.require(:organization).permit :name, :type_id, :email, :phone
   end
 
   def organization_edit_params
-    params.require(:organization).permit(:title, :description)
+    params.require(:organization).permit :name, :type_id, :email, :phone, :biography
   end
 end

@@ -38,7 +38,7 @@ class User < ApplicationRecord
             unless: lambda {password.nil?},
             on: :update
   validates :virtual_role,
-            inclusion: {in: %w(consumer producer)},
+            inclusion: {in: Role::TYPE_EXTERNALS},
             unless: lambda {self.virtual_role.blank?},
             on: :create,
             presence: true
