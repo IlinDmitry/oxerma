@@ -1,5 +1,9 @@
-.container
-  %h1 Sign up
-  = render partial: 'users/forms/new'
-  %p
-    = link_to 'Sign in now!', new_sessions_path
+.container{style: 'margin-top: 20px;'}
+  .row
+    .col-sm-4
+      %h1 Создайте аккаунт
+      = link_to 'или авторизуйтесь', new_sessions_path
+.container{style: 'margin-top: 20px;'}
+  .row
+    .col-sm-4
+      = render partial: 'users/forms/new'

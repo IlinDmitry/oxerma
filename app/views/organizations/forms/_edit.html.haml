@@ -7,15 +7,14 @@
     = f.text_field :name
   .field
     = f.label :type
-    = f.text_field :type
+    = f.select :type_id, OrganizationType.pluck(:name, :id)
   .field
-    = f.label :email
-    = f.text_field :email
+    = f.text_field :email, placeholder: :email
   .field
     = f.label :phone
     = f.text_field :phone
   .field
     = f.label :biography
-    = f.text_field :biography
+    = f.text_area :biography
   .actions
     = f.submit 'Save'

@@ -9,9 +9,6 @@
     = f.label 'Телефон'
     = f.text_field :phone, class: 'form-control', placeholder: '+7 000-000-00-00'
   .field.form-group
-    = f.label 'Кем вы являетесь?'
-    = f.select :virtual_role, Role::TYPE_EXTERNALS, class: 'form-control'
-  .field.form-group
     = f.label 'Пароль'
     = f.password_field :password, class: 'form-control'
     %small.text-muted
@@ -22,4 +19,4 @@
     %small.text-muted
       Must be more than 8 characters long
   .actions.form-group
-    = f.submit 'Создать'
+    = f.submit 'Обновить'

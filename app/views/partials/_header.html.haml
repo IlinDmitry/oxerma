@@ -7,22 +7,21 @@
       %ul.navbar-nav.ml-auto
         - if user_authenticated?
           %li.nav-item
-            = link_to 'Users', users_path, class: 'nav-link'
+            = link_to 'Пользователи', users_path, class: 'nav-link'
           %li.nav-item
-            = link_to 'Organizations', organizations_path, class: 'nav-link'
+            = link_to 'Организации', organizations_path, class: 'nav-link'
           %li.nav-item.dropdown
             %a.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#"}
               = current_user.email
             .dropdown-menu
-              = link_to 'Account', user_path(current_user), class: 'dropdown-item'
+              = link_to 'Моя страница', user_path(current_user), class: 'dropdown-item'
               .dropdown-divider
-              = link_to 'Edit', edit_user_path(current_user), class: 'dropdown-item'
-              = link_to 'Settings', edit_user_path(current_user), class: 'dropdown-item'
-              = link_to 'Help', edit_user_path(current_user), class: 'dropdown-item'
+              = link_to 'Редактировать', edit_user_path(current_user), class: 'dropdown-item'
+              = link_to 'Приватность', edit_user_path(current_user, section: :secrecy), class: 'dropdown-item'
               .dropdown-divider
-              = link_to 'Sign out', :sessions, method: :delete, class: 'dropdown-item'
+              = link_to 'Выйти', :sessions, method: :delete, class: 'dropdown-item'
         - else
           %li.nav-item
-            = link_to 'Sign in', new_sessions_path, class: 'nav-link'
+            = link_to 'Авторизация', new_sessions_path, class: 'nav-link'
           %li.nav-item
-            = link_to 'Sign up', new_user_path, class: 'nav-link'
+            = link_to 'Регистрация', new_user_path, class: 'nav-link'

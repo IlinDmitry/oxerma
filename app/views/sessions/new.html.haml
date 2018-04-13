@@ -1,12 +1,18 @@
-.container
-  %h1 Sign in
-  = form_for :session, url: sessions_path do |f|
-    .field
-      = f.label :email
-      = f.email_field :email
-    .field
-      = f.label :password
-      = f.password_field :password
-    = f.submit 'Sign in'
-  %p
-    = link_to 'Sign up now!', new_user_path
+.container{style: 'margin-top: 20px;'}
+  .row
+    .col-sm-4
+      %h1 Авторизуйтесь
+      = link_to 'или создайте аккаунт', new_user_path
+.container{style: 'margin-top: 20px;'}
+  .row
+    .col-sm-4
+      = form_for :session, url: sessions_path do |f|
+        .field.form-group
+          = f.label :email
+          = f.text_field :email, class: 'form-control', placeholder: 'name@email.domain'
+        .field.form-group
+          = f.label 'Пароль'
+          = f.password_field :password, class: 'form-control'
+          %small.text-muted
+            Must be more than 8 characters long
+        = f.submit 'Авторизация'
