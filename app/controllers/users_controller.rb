@@ -53,7 +53,7 @@ class UsersController < ApplicationController
   private
 
   def set_user
-    is_current = current_user.id.eql? params[:id].to_i
+    is_current = current_user.try(:id).eql? params[:id].to_i
     @user = is_current ? current_user : User.find(params[:id])
   rescue ActiveRecord::RecordNotFound => e
     redirect_to users_path, flash: {alert: e.message}
