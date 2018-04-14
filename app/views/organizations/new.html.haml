@@ -1,6 +1,8 @@
-.container
-  %h1 New organization
-
-  = render 'organizations/forms/new'
-
-  = link_to 'Back', organizations_path
+.container{style: 'margin-top: 20px;'}
+  .row
+    .col-sm-6
+      %h1 Создать организацию
+.container{style: 'margin-top: 20px;'}
+  .row
+    .col-sm-4
+      = render 'organizations/forms/new'

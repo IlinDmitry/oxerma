@@ -2,17 +2,17 @@
 
   = render partial: 'partials/errors', locals: {model: @organization}
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :type
+  .field.form-group
+    = f.label 'Имя'
+    = f.text_field :name, class: 'form-control'
+  .field.form-group
+    = f.label 'Правовая норма'
     = f.select :type_id, OrganizationType.pluck(:name, :id)
-  .field
-    = f.label :email
-    = f.text_field :email
-  .field
-    = f.label :phone
-    = f.text_field :phone
-  .actions
-    = f.submit 'Save'
+  .field.form-group
+    = f.label 'Почта'
+    = f.text_field :email, class: 'form-control', placeholder: 'name@email.domain'
+  .field.form-group
+    = f.label 'Телефон'
+    = f.text_field :phone, class: 'form-control', placeholder: '+7 000-000-00-00'
+  .actions.form-group
+    = f.submit 'Создать'

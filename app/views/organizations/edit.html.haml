@@ -1,8 +1,6 @@
-.container
-  %h1 Editing organization
-
-  = render 'organizations/forms/edit'
-
-  = link_to 'Show', @organization
-  \|
-  = link_to 'Back', organizations_path
+.container{style: 'margin-top: 20px;'}
+  %h1 Изменение данных
+.container{style: 'margin-top: 20px;'}
+  .row
+    .col-sm-4
+      = render 'organizations/forms/edit'
