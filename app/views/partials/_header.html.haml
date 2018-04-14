@@ -17,7 +17,7 @@
               = link_to 'Моя страница', user_path(current_user), class: 'dropdown-item'
               .dropdown-divider
               = link_to 'Редактировать', edit_user_path(current_user), class: 'dropdown-item'
-              = link_to 'Приватность', edit_user_path(current_user, section: :secrecy), class: 'dropdown-item'
+              = link_to 'Настройки', edit_user_path(current_user, section: :secrecy), class: 'dropdown-item'
               .dropdown-divider
               = link_to 'Выйти', :sessions, method: :delete, class: 'dropdown-item'
         - else
