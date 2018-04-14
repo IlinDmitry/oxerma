@@ -1,20 +1,16 @@
-.container
-  %h1 Listing users
-
-  %table
-    %thead
-      %tr
-        %th Email
-        %th Phone
-        %th
-        %th
-        %th
-
-    %tbody
-      - @users.each do |user|
-        %tr
-          %td= user.email
-          %td= user.phone
-          %td= policy(user).show? ? (link_to 'Show', user) : ''
-          %td= policy(user).edit? ? link_to('Edit', edit_user_path(user)) : ''
-          %td= policy(user).destroy? ? link_to('Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }) : ''
+.container{style: 'margin-top: 20px;'}
+  .row
+    .col-sm-6
+      %h1 Пользователи
+.container{style: 'margin-top: 20px;'}
+  .row
+    - @users.each do |user|
+      .col-md-6{style: 'margin-top: 30px;'}
+        .media
+          .square-box.pull-left
+            = image_tag 'user_default.png', size:'72x72'
+          .media-body
+            %div{style: 'padding-left: 10px;'}
+              %p
+                %b= link_to user.email, user
+              %p= user.roles.first.name

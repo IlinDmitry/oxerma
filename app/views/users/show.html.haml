@@ -1,26 +1,26 @@
-.container
-  %p
-    %b Email:
-    = @user.email
-  %p
-    %b Phone:
-    = @user.phone
-  %p
-    %b First name:
-    = @user.first_name
-  %p
-    %b Middle name:
-    = @user.middle_name
-  %p
-    %b Last_name:
-    = @user.last_name
-  %p
-    %b Birthday:
-    = @user.birthday
-  %p
-    %b Biography:
-    = @user.biography
-
-  = policy(@user).edit? ? link_to('Edit', edit_user_path(@user)) : ''
-  \|
-  = link_to 'Back', users_path
+.container{style: 'margin-top: 20px;'}
+  .row
+    .col-sm-6
+      %h1 Аккаунт
+.container{style: 'margin-top: 20px;'}
+  .row
+    .col-sm-6
+      = policy(@user).edit? ? link_to('Редактировать', edit_user_path(@user)) : ''
+      = policy(@user).destroy? ? link_to('Удалить', @user, method: :delete, data: { confirm: 'Are you sure?' }) : ''
+.container{style: 'margin-top: 20px;'}
+  .row
+    .col-md-2
+      = image_tag 'user_default.png', size: '96x96'
+    .col-md-10
+      .row
+        %b
+          Почта:
+        = @user.email
+      .row
+        %b
+          Телефон:
+        = @user.phone
+      .row
+        = @user.last_name
+        = @user.first_name
+        = @user.middle_name
