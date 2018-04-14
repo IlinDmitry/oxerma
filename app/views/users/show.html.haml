@@ -1,26 +1,67 @@
-.container{style: 'margin-top: 20px;'}
-  .row
-    .col-sm-6
-      %h1 Аккаунт
-.container{style: 'margin-top: 20px;'}
-  .row
-    .col-sm-6
-      = policy(@user).edit? ? link_to('Редактировать', edit_user_path(@user)) : ''
-      = policy(@user).destroy? ? link_to('Удалить', @user, method: :delete, data: { confirm: 'Are you sure?' }) : ''
-.container{style: 'margin-top: 20px;'}
-  .row
-    .col-md-2
-      = image_tag 'user_default.png', size: '96x96'
+.container
+  .row{style: 'padding-top: 25px;'}
+    .col-md-2{style: 'padding-top: 25px;'}
+      = render partial: 'partials/navigation'
     .col-md-10
-      .row
-        %b
-          Почта:
-        = @user.email
-      .row
-        %b
-          Телефон:
-        = @user.phone
-      .row
-        = @user.last_name
-        = @user.first_name
-        = @user.middle_name
+      .row{style: 'padding-top: 25px;'}
+        .col-md-4{style: 'text-align: center;'}
+          = image_tag 'user_default.png', size: '128x128'
+          %div{style: 'padding-top: 25px;'}
+            = policy(@user).edit? ? link_to('Редактировать', edit_user_path(@user), class: 'btn btn-primary') : ''
+            %div{style: 'padding-top: 25px;'}
+              .row
+                .col-md-6
+                  %h3 13
+                  .text-muted запросов
+                .col-md-6
+                  %h3.text-success 3.7
+                  .text-muted коэффициент
+        .col-md-8
+          .row
+            %h2
+              = @user.last_name
+              = @user.first_name
+              = @user.middle_name
+          .row
+            %small.text-muted
+              Присоединился:
+              = @user.created_at
+          .row{style: 'padding-top: 25px;'}
+            .card{style: 'width: 100%;'}
+              .card-body
+                %h5.card-title
+                  %b Персональная информация
+                - if @user.email.present?
+                  .row.form-group
+                    .col-md-4
+                      %small.text-muted Почта:
+                    .col-md-8
+                      = @user.email
+                - if @user.phone.present?
+                  .row.form-group
+                    .col-md-4
+                      %small.text-muted Телефонный номер:
+                    .col-md-8
+                      = @user.phone
+                - if @user.birthday.present?
+                  .row.form-group
+                    .col-md-4
+                      %small.text-muted День рождения
+                    .col-md-8
+                      = @user.birthday
+                - if @user.biography.present?
+                  .row.form-group
+                    .col-md-4
+                      %small.text-muted Дополнительная информация:
+                    .col-md-8
+                      = @user.biography
+          .row{style: 'padding-top: 25px;'}
+            .card{style: 'width: 100%;'}
+              .card-body
+                %h5.card-title
+                  %b Организации
+                  // Заглушка организаций
+                  .row{style: 'padding-top: 25px;'}
+                    - ['https://img.bhs4.com/be/4/be4ff7b4907b0fcb5f6eff4aaf26f3f2f426b20f_large.jpg','http://www.thelogomix.com/files/imagecache/v3-logo-detail/George-Bokhua-Farmer-logo.jpg', 'https://previews.123rf.com/images/samorodinov/samorodinov1701/samorodinov170100079/69285844-farm-logo-with-a-farmer-vector-illustration-farm-food-harvest-web-banners-advertisements-brochures-b.jpg'].each do |url|
+                      .col-md-2.text-center
+                        = image_tag url, size: '96x96'

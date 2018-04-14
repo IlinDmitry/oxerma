@@ -13,4 +13,4 @@
             %div{style: 'padding-left: 10px;'}
               %p
                 %b= link_to user.email, user
-              %p= user.roles.first.name
+              %p= Role::TYPE_EXTERNALS[user.roles.first.name.to_sym].to_s.capitalize
