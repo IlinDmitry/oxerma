@@ -1,4 +1,6 @@
 class Organization < ApplicationRecord
+  include Imagenable
+
   resourcify
 
   has_many :users_organizations
@@ -8,6 +10,10 @@ class Organization < ApplicationRecord
   belongs_to :organization_type,
              foreign_key: :type_id
 
+  validates :psrn,
+            numericality: {only_integer: true},
+            uniqueness: true,
+            presence: true
   validates :name,
             presence: true
   validates :type_id,

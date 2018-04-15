@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  include Imagenable
+
   rolify
   has_secure_password
 
@@ -8,7 +10,7 @@ class User < ApplicationRecord
   attr_accessor :skip_after_create_assign_role
 
   after_create :assign_role,
-               unless: Proc.new { |user| user.skip_after_create_assign_role }
+               unless: Proc.new {|user| user.skip_after_create_assign_role}
 
   has_many :users_organizations
   has_many :organizations,
