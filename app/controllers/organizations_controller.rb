@@ -23,13 +23,11 @@ class OrganizationsController < ApplicationController
 
   # POST /organizations
   def create
-    @organization = current_user.organizations.build organization_new_params
-    if @organization.save
-      current_user.add_role :admin, @organization
-      redirect_to @organization, flash: {notice: 'Organization was successfully created.'}
-    else
-      render :new
-    end
+    @organization = current_user.organizations.create! organization_new_params
+    current_user.add_role :admin, @organization
+    redirect_to @organization, flash: {notice: 'Organization was successfully created.'}
+  rescue ActiveRecord::RecordInvalid
+    render :new
   end
 
   # PATCH/PUT /organizations/1
@@ -56,10 +54,10 @@ class OrganizationsController < ApplicationController
   end
 
   def organization_new_params
-    params.require(:organization).permit :name, :type_id, :email, :phone
+    params.require(:organization).permit :psrn, :name, :type_id, :email, :phone, :image
   end
 
   def organization_edit_params
-    params.require(:organization).permit :name, :type_id, :email, :phone, :biography
+    params.require(:organization).permit :name, :type_id, :email, :phone, :biography, :image, :remove_image
   end
 end
