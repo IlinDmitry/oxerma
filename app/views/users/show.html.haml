@@ -8,14 +8,15 @@
           = image_tag 'user_default.png', size: '128x128'
           %div{style: 'padding-top: 25px;'}
             = policy(@user).edit? ? link_to('Редактировать', edit_user_path(@user), class: 'btn btn-primary') : ''
-            %div{style: 'padding-top: 25px;'}
-              .row
-                .col-md-6
-                  %h3 13
-                  .text-muted запросов
-                .col-md-6
-                  %h3.text-success 3.7
-                  .text-muted коэффициент
+          // Заглушка статистики
+          %div{style: 'padding-top: 25px;'}
+            .row
+              .col-md-6
+                %h3 13
+                .text-muted запросов
+              .col-md-6
+                %h3.text-success 3.7
+                .text-muted коэффициент
         .col-md-8
           .row
             %h2
