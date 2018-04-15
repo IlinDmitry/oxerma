@@ -2,6 +2,14 @@
 
   = render partial: 'partials/errors', locals: {model: @user}
 
+  - if @user.image.present?
+    .field.form-group
+      = f.label 'Удалить изображение'
+      = f.check_box :remove_image
+  - else
+    .field.form-group
+      = f.label 'Изображение'
+      = f.file_field :image
   .field.form-group
     = f.label 'Имя'
     = f.text_field :first_name, class: 'form-control'

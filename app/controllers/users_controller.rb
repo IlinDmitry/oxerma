@@ -10,6 +10,7 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
+    @user = UserPresenter.new @user
   end
 
   # GET /users/new
@@ -64,6 +65,6 @@ class UsersController < ApplicationController
   end
 
   def user_edit_params
-    params.require(:user).permit :email, :phone, :first_name, :middle_name, :last_name, :biography, :birthday, :password, :password_confirmation, :virtual_role
+    params.require(:user).permit :email, :phone, :image, :remove_image, :first_name, :middle_name, :last_name, :biography, :birthday, :password, :password_confirmation, :virtual_role
   end
 end
