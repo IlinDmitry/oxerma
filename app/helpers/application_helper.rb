@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def present(model)
+    "#{model.class}Presenter".constantize.new model
+  end
+
   def bootstrap_class_for(flash_type)
     case flash_type.to_sym
       when :success
