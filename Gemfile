@@ -29,7 +29,7 @@ gem 'mini_magick', '~> 4.8'
 gem 'bootsnap', '>= 1.1.0', require: false
 # Haml-rails provides Haml generators for Rails. It also enables Haml as the templating engine
 gem 'haml-rails', '~> 1.0'
-# Build responsive, mobile-first projects on the web with the world's most popular front-end component library.
+# Build responsive, mobile-first projects on the web with the world's most popular front-end component library
 gem 'bootstrap', '~> 4.0.0'
 # Bootstrap JavaScript depends on jQuery
 gem 'jquery-rails'
@@ -37,6 +37,10 @@ gem 'jquery-rails'
 gem 'rolify'
 # Authorization through OO design and pure Ruby classes
 gem 'pundit'
+# Classier solution for file uploads for Rails, Sinatra and other Ruby web frameworks
+gem 'carrierwave', '~> 1.0'
+# Adds file validators to ActiveModel
+gem 'file_validators', '~> 2.0', '>= 2.0.2'
 
 group :development, :test do
   # Rspec-rails is a testing framework for Rails
@@ -50,7 +54,7 @@ end
 group :development do
   # Use Capistrano for deployment
   gem 'capistrano-rails'
-  # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
+  # Access an interactive console on exception pages or by calling 'console' anywhere in the code
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
