@@ -22,13 +22,16 @@ ActiveRecord::Schema.define(version: 2018_04_13_063900) do
   end
 
   create_table "organizations", force: :cascade do |t|
+    t.bigint "psrn", null: false
     t.string "name", limit: 25, null: false
     t.integer "type_id", null: false
     t.string "email", null: false
     t.string "phone", null: false
     t.text "biography"
+    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["psrn"], name: "index_organizations_on_psrn", unique: true
   end
 
   create_table "roles", force: :cascade do |t|
@@ -49,6 +52,7 @@ ActiveRecord::Schema.define(version: 2018_04_13_063900) do
     t.string "last_name", limit: 25
     t.date "birthday"
     t.text "biography"
+    t.string "image"
     t.string "password_digest", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

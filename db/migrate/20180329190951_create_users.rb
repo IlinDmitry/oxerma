@@ -8,6 +8,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :last_name, null: true, default: nil, limit: 25
       t.date :birthday, null: true, default: nil
       t.text :biography, null: true, default: nil, limit: 500
+      t.string :image, null: true, default: nil
       t.string :password_digest, null: false
       t.timestamps
     end
