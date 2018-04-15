@@ -1,0 +1,2 @@
+class OrganizationPresenter < ApplicationPresenter
+end
