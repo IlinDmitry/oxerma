@@ -4,12 +4,11 @@
       %h1 Пользователи
 .container{style: 'margin-top: 20px;'}
   .row
-    - @users.each do |user|
-      - user = UserPresenter.new user
+    - present(@users) do |user|
       .col-md-6{style: 'margin-top: 30px;'}
         .media
           .square-box.pull-left
-            = image_tag user.image_small_thumb_path, size:'72x72', class: 'rounded-circle'
+            = image_tag user.image_thumb_small_path, size:'72x72', class: 'rounded-circle'
           .media-body
             %div{style: 'padding-left: 10px;'}
               %p
