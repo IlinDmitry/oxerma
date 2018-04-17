@@ -59,7 +59,6 @@
               %h5.card-title
                 %b Организации
                 .row{style: 'padding-top: 25px;'}
-                  - @user.organizations.each do |organization|
-                    - organization = OrganizationPresenter.new organization
+                  - present(@user.organizations) do |organization|
                     .col-md-3
                       = image_tag organization.image_thumb_small_path, size: '96x96'
