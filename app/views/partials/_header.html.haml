@@ -1,27 +1,2 @@
-%nav.navbar.navbar-expand-lg.navbar-light.bg-light
-  .container
-    = link_to 'OXERMA', user_authenticated? ? current_user : root_path, class: 'navbar-brand'
-    %button.navbar-toggler{"aria-controls" => "navbarNavDropdown", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarNavDropdown", "data-toggle" => "collapse", type: "button"}
-      %span.navbar-toggler-icon
-    #navbarNavDropdown.collapse.navbar-collapse
-      %ul.navbar-nav.ml-auto
-        - if user_authenticated?
-          %li.nav-item
-            = link_to 'Пользователи', users_path, class: 'nav-link'
-          %li.nav-item
-            = link_to 'Организации', organizations_path, class: 'nav-link'
-          %li.nav-item.dropdown
-            %a.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#"}
-              = current_user.email
-            .dropdown-menu
-              = link_to 'Моя страница', user_path(current_user), class: 'dropdown-item'
-              .dropdown-divider
-              = link_to 'Редактировать', edit_user_path(current_user), class: 'dropdown-item'
-              = link_to 'Настройки', edit_user_path(current_user, section: :secrecy), class: 'dropdown-item'
-              .dropdown-divider
-              = link_to 'Выйти', :sessions, method: :delete, class: 'dropdown-item'
-        - else
-          %li.nav-item
-            = link_to 'Авторизация', new_sessions_path, class: 'nav-link'
-          %li.nav-item
-            = link_to 'Регистрация', new_user_path, class: 'nav-link'
+%header
+  =render partial: "partials/navigation/#{user_authenticated? ? 'authenticated/' : ''}header"
