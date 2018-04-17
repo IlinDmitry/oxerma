@@ -1,5 +1,4 @@
 class UserPresenter < ApplicationPresenter
-  include CarrierwavePresentable
 
   def full_name
     "#{model.last_name} #{model.first_name} #{model.middle_name}"

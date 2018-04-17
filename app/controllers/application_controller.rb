@@ -11,11 +11,12 @@ class ApplicationController < ActionController::Base
 
   def user_not_authorized
     flash[:alert] = 'You are not authorized to perform this action.'
+    # TODO: Регистрировать попытку несанкционированного доступа
     redirect_to root_path
   end
 
   def invalid_authenticity_token
     # TODO: Регистрировать попытку подмены CSRF - токена
-    redirect_to root_path, notice: 'Can\'t verify CSRF token authenticity.'
+    redirect_to root_path, flash: {notice: 'Can\'t verify CSRF token authenticity.'}
   end
 end

@@ -10,12 +10,13 @@
     .field.form-group
       = f.label 'Изображение'
       = f.file_field :image
-  .field.form-group
-    = f.label 'Имя'
-    = f.text_field :first_name, class: 'form-control'
-  .field.form-group
-    = f.label 'Отчество'
-    = f.text_field :middle_name, class: 'form-control'
+    .row.field.form-group
+      .col-md-6
+        = f.label 'Имя'
+        = f.text_field :first_name, class: 'form-control'
+      .col-md-6
+        = f.label 'Отчество'
+        = f.text_field :middle_name, class: 'form-control'
   .field.form-group
     = f.label 'Фамилия'
     = f.text_field :last_name, class: 'form-control'
@@ -24,7 +25,7 @@
     = f.date_field :birthday, class: 'form-control'
   .field.form-group
     = f.label 'Дополнительная информация'
-    = f.text_area :biography, class: 'form-control', rows: 10
+    = f.text_area :biography, class: 'form-control', rows: 5
     %small.text-muted
       Must be no more than 500 characters
   .actions.form-group

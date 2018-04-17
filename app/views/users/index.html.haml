@@ -8,7 +8,7 @@
         .card-body
           .row
             .col-md-3
-              = image_tag user.image_thumb_small_path, size:'72x72', class: 'rounded-circle'
+              = image_tag user.image.thumb_small.url, size:'72x72', class: 'rounded-circle'
             .col-md-9
               %h5.card-title= user.email
               %h6.card-subtitle.mb-2.text-muted= user.roles.first.name

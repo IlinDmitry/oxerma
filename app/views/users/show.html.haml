@@ -2,7 +2,7 @@
   .col-md-12
     .row{style: 'padding-top: 25px;'}
       .col-md-5{style: 'text-align: center;'}
-        = image_tag @user.image_thumb_path, size: '128x128', class: 'rounded-circle'
+        = image_tag @user.image.thumb.url, size: '128x128', class: 'rounded-circle'
         %div{style: 'padding-top: 25px;'}
           = policy(@user).edit? ? link_to('Редактировать', edit_user_path(@user), class: 'btn btn-primary') : ''
         // Заглушка статистики
@@ -61,4 +61,4 @@
                 .row{style: 'padding-top: 25px;'}
                   - present(@user.organizations) do |organization|
                     .col-md-3
-                      = image_tag organization.image_thumb_small_path, size: '96x96'
+                      = image_tag organization.image.thumb_small.url, size: '96x96'
