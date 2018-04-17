@@ -1,8 +1,12 @@
 require 'delegate'
 
 class ApplicationPresenter < SimpleDelegator
-  def date_created_at(format = '%Y-%m-%d')
+  def present_created_at(format = '%Y-%m-%d')
     model.created_at.strftime format
+  end
+
+  def present_updated_at(format = '%Y-%m-%d')
+    model.updated_at.strftime format
   end
 
   def model
