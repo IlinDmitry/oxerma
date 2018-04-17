@@ -1,68 +1,65 @@
-.container
-  .row{style: 'padding-top: 25px;'}
-    .col-md-2{style: 'padding-top: 25px;'}
-      = render partial: 'partials/navigation'
-    .col-md-10
-      .row{style: 'padding-top: 25px;'}
-        .col-md-4{style: 'text-align: center;'}
-          = image_tag @user.image_thumb_path, size: '128x128', class: 'rounded-circle'
-          %div{style: 'padding-top: 25px;'}
-            = policy(@user).edit? ? link_to('Редактировать', edit_user_path(@user), class: 'btn btn-primary') : ''
-          // Заглушка статистики
-          %div{style: 'padding-top: 25px;'}
-            .row
-              .col-md-6
-                %h3 13
-                .text-muted запросов
-              .col-md-6
-                %h3.text-success 3.7
-                .text-muted коэффициент
-        .col-md-8
+.row{style: 'padding-top: 25px;'}
+  .col-md-12
+    .row{style: 'padding-top: 25px;'}
+      .col-md-5{style: 'text-align: center;'}
+        = image_tag @user.image_thumb_path, size: '128x128', class: 'rounded-circle'
+        %div{style: 'padding-top: 25px;'}
+          = policy(@user).edit? ? link_to('Редактировать', edit_user_path(@user), class: 'btn btn-primary') : ''
+        // Заглушка статистики
+        %div{style: 'padding-top: 25px;'}
           .row
-            %h2
-              = @user.last_name
-              = @user.first_name
-              = @user.middle_name
-          .row
-            %small.text-muted
-              Присоединился:
-              = @user.created_at
-          .row{style: 'padding-top: 25px;'}
-            .card{style: 'width: 100%;'}
-              .card-body
-                %h5.card-title
-                  %b Персональная информация
-                - if @user.email.present?
-                  .row.form-group
-                    .col-md-4
-                      %small.text-muted Почта:
-                    .col-md-8
-                      = @user.email
-                - if @user.phone.present?
-                  .row.form-group
-                    .col-md-4
-                      %small.text-muted Телефонный номер:
-                    .col-md-8
-                      = @user.phone
-                - if @user.birthday.present?
-                  .row.form-group
-                    .col-md-4
-                      %small.text-muted День рождения
-                    .col-md-8
-                      = @user.birthday
-                - if @user.biography.present?
-                  .row.form-group
-                    .col-md-4
-                      %small.text-muted Дополнительная информация:
-                    .col-md-8
-                      = @user.biography
-          .row{style: 'padding-top: 25px;'}
-            .card{style: 'width: 100%;'}
-              .card-body
-                %h5.card-title
-                  %b Организации
-                  .row{style: 'padding-top: 25px;'}
-                    - @user.organizations.each do |organization|
-                      - organization = OrganizationPresenter.new organization
-                      .col-md-2.text-center
-                        = image_tag organization.image_thumb_small_path, size: '96x96'
+            .col-md-6
+              %h3 13
+              .text-muted запросов
+            .col-md-6
+              %h3.text-success 3.7
+              .text-muted коэффициент
+      .col-md-7
+        .row
+          %h2
+            = @user.last_name
+            = @user.first_name
+            = @user.middle_name
+        .row
+          %small.text-muted
+            Присоединился:
+            = @user.created_at
+        .row{style: 'padding-top: 25px;'}
+          .card{style: 'width: 100%;'}
+            .card-body
+              %h5.card-title
+                %b Персональная информация
+              - if @user.email.present?
+                .row.form-group
+                  .col-md-4
+                    %small.text-muted Почта:
+                  .col-md-8
+                    = @user.email
+              - if @user.phone.present?
+                .row.form-group
+                  .col-md-4
+                    %small.text-muted Телефонный номер:
+                  .col-md-8
+                    = @user.phone
+              - if @user.birthday.present?
+                .row.form-group
+                  .col-md-4
+                    %small.text-muted День рождения
+                  .col-md-8
+                    = @user.birthday
+              - if @user.biography.present?
+                .row.form-group
+                  .col-md-4
+                    %small.text-muted Дополнительная информация:
+                  .col-md-8
+                    = @user.biography
+        .row{style: 'padding-top: 25px;'}
+          .card{style: 'width: 100%;'}
+            .card-body
+              %h5.card-title
+                %b Организации
+                .row{style: 'padding-top: 25px;'}
+                  - @user.organizations.each do |organization|
+                    - organization = OrganizationPresenter.new organization
+                    .col-md-3
+                      = image_tag organization.image_thumb_small_path, size: '96x96'

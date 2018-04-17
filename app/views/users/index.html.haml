@@ -1,16 +1,17 @@
-.container{style: 'margin-top: 20px;'}
-  .row
-    .col-sm-6
-      %h1 Пользователи
-.container{style: 'margin-top: 20px;'}
-  .row
-    - present(@users) do |user|
-      .col-md-6{style: 'margin-top: 30px;'}
-        .media
-          .square-box.pull-left
-            = image_tag user.image_thumb_small_path, size:'72x72', class: 'rounded-circle'
-          .media-body
-            %div{style: 'padding-left: 10px;'}
-              %p
-                %b= link_to user.email, user
-              %p= Role::TYPE_EXTERNALS[user.roles.first.name.to_sym].to_s.capitalize
+.row{style: 'margin-top: 20px;'}
+  .col-sm-6
+    %h1 Пользователи
+.row{style: 'margin-top: 20px;'}
+  - present(@users) do |user|
+    .col-md-6{style: 'margin-top: 30px;'}
+      .card
+        .card-body
+          .row
+            .col-md-3
+              = image_tag user.image_thumb_small_path, size:'72x72', class: 'rounded-circle'
+            .col-md-9
+              %h5.card-title= user.email
+              %h6.card-subtitle.mb-2.text-muted= user.roles.first.name
+          .row{style: 'margin-top: 30px;'}
+          %p.card-text= truncate user.biography, length: 100
+          = link_to 'Аккаунт', user, class: 'card-link'

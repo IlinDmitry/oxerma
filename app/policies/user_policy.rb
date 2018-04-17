@@ -15,6 +15,10 @@ class UserPolicy < ApplicationPolicy
     update?
   end
 
+  def settings?
+    update?
+  end
+
   def create?
     !@user
   end

@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action only: [:show, :edit, :update, :destroy] {authorize @user}
+  layout 'authenticated', except: [:new]
+
+  before_action :set_user, only: [:show, :edit, :settings, :update, :destroy]
+  before_action only: [:show, :edit, :settings, :update, :destroy] {authorize @user}
   before_action only: [:index, :new, :create] {authorize User}
 
   # GET /users
@@ -20,10 +22,10 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    section = ['account', 'secrecy'].detect do |section|
-      break section if params[:section].eql? section
-    end || 'account'
-    render :edit, locals: {section: section}
+  end
+
+  # GET /users/1/settings
+  def settings
   end
 
   # POST /users
