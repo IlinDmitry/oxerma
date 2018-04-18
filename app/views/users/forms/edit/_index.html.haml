@@ -10,13 +10,13 @@
     .field.form-group
       = f.label 'Изображение'
       = f.file_field :image
-    .row.field.form-group
-      .col-md-6
-        = f.label 'Имя'
-        = f.text_field :first_name, class: 'form-control'
-      .col-md-6
-        = f.label 'Отчество'
-        = f.text_field :middle_name, class: 'form-control'
+  .row.field.form-group
+    .col-md-6
+      = f.label 'Имя'
+      = f.text_field :first_name, class: 'form-control'
+    .col-md-6
+      = f.label 'Отчество'
+      = f.text_field :middle_name, class: 'form-control'
   .field.form-group
     = f.label 'Фамилия'
     = f.text_field :last_name, class: 'form-control'
