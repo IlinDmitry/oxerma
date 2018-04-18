@@ -41,6 +41,8 @@ gem 'pundit'
 gem 'carrierwave', '~> 1.0'
 # Adds file validators to ActiveModel
 gem 'file_validators', '~> 2.0', '>= 2.0.2'
+# This gem is a port of Perl's Data::Faker library that generates fake data
+gem 'faker'
 
 group :development, :test do
   # Rspec-rails is a testing framework for Rails
