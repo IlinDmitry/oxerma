@@ -28,6 +28,6 @@ class UserPolicy < ApplicationPolicy
   end
 
   def destroy?
-    @user.id.eql?(@record.id) && @record.has_dependencies?
+    @user.id.eql?(@record.id) && !@record.has_dependencies?
   end
 end

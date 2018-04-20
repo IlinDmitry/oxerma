@@ -10,7 +10,7 @@ class User < ApplicationRecord
   attr_accessor :skip_after_create_assign_role
 
   before_destroy do
-    unless has_dependencies?
+    if has_dependencies?
       errors.add(:base, "Cannot delete record because dependent exist")
       throw(:abort)
     end
@@ -54,7 +54,7 @@ class User < ApplicationRecord
             presence: true
 
   def has_dependencies?
-    users_organizations.empty?
+    users_organizations.any?
   end
 
   private
