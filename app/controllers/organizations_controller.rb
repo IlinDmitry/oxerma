@@ -25,24 +25,25 @@ class OrganizationsController < ApplicationController
   def create
     @organization = current_user.organizations.create! organization_new_params
     current_user.add_role :admin, @organization
-    redirect_to @organization, flash: {notice: 'Organization was successfully created.'}
+    redirect_to @organization, flash: {success: 'Организация успешно создана'}
   rescue ActiveRecord::RecordInvalid
     render :new
   end
 
   # PATCH/PUT /organizations/1
   def update
-    if @organization.update organization_edit_params
-      redirect_to @organization, flash: {notice: 'Organization was successfully updated.'}
-    else
-      render :edit
-    end
+    @organization.update! organization_edit_params
+    redirect_to @organization, flash: {success: 'Организация успешно обновлена'}
+  rescue
+    render :edit
   end
 
   # DELETE /organizations/1
   def destroy
-    @organization.destroy
-    redirect_to organizations_url, flash: {notice: 'Organization was successfully destroyed.'}
+    @organization.destroy!
+    redirect_to organizations_url, flash: {success: 'Организация успешно уничтожена'}
+  rescue ActiveRecord::RecordNotDestroyed => e
+    redirect_to @user, flash: {alert: e.message}
   end
 
   private

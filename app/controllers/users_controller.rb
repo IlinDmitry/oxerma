@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  layout 'authenticated', except: [:new]
+  layout 'authenticated', except: [:new, :create]
 
   before_action :set_user, only: [:show, :edit, :settings, :update, :destroy]
   before_action only: [:show, :edit, :settings, :update, :destroy] {authorize @user}
@@ -30,35 +30,35 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
-    @user = User.new(user_new_params)
-    if @user.save
-      redirect_to root_path, flash: {notice: 'User was successfully created.'}
-    else
-      render :new
-    end
+    @user = User.new user_new_params
+    @user.save!
+    redirect_to root_path, flash: {success: 'Аккаунт успешно создан'}
+  rescue
+    render :new
   end
 
   # PATCH/PUT /users/1
   def update
-    if @user.update(user_edit_params)
-      redirect_to @user, flash: {notice: 'User was successfully updated.'}
-    else
-      render :edit
-    end
+    @user.update! user_edit_params
+    redirect_to @user, flash: {success: 'Аккаунт успешно обновлен'}
+  rescue
+    render :edit
   end
 
   # DELETE /users/1
   def destroy
+    @user.destroy!
     session[:user_id] = nil if @user.id.eql? current_user.id
-    @user.destroy
-    redirect_to users_url, flash: {notice: 'User was successfully destroyed.'}
+    redirect_to root_path, flash: {success: 'Аккаунт успешно уничтожен'}
+  rescue ActiveRecord::RecordNotDestroyed => e
+    redirect_to @user, flash: {alert: e.message}
   end
 
   private
 
   def set_user
-    is_current = current_user.try(:id).eql? params[:id].to_i
-    @user = is_current ? current_user : User.find(params[:id])
+    user_id = params[:id].to_i
+    @user = current_user.try(:id).eql?(user_id) ? current_user : User.find(user_id)
   rescue ActiveRecord::RecordNotFound => e
     redirect_to users_path, flash: {alert: e.message}
   end
