@@ -23,7 +23,7 @@
         .row
           %small.text-muted
             Присоединился:
-            = @user.present_created_at
+            = @user.created_at.strftime '%F'
         .row{style: 'padding-top: 25px;'}
           .card{style: 'width: 100%;'}
             .card-body
