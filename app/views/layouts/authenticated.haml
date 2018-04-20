@@ -11,6 +11,10 @@
     = render partial: 'partials/header'
     .container
       .row{style: 'padding-top: 25px;'}
+        .col-md-2
+          = render partial: 'partials/flash'
+    .container
+      .row{style: 'padding-top: 25px;'}
         .col-md-2{style: 'padding-top: 25px;'}
           = render partial: 'partials/navigation/authenticated/sidelong'
         .col-md-10
