@@ -49,6 +49,7 @@ class UsersController < ApplicationController
 
   # DELETE /users/1
   def destroy
+    session[:user_id] = nil if @user.id.eql? current_user.id
     @user.destroy
     redirect_to users_url, flash: {notice: 'User was successfully destroyed.'}
   end
