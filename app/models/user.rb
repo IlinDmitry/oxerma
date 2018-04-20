@@ -9,8 +9,16 @@ class User < ApplicationRecord
   attr_accessor :virtual_role
   attr_accessor :skip_after_create_assign_role
 
+  before_destroy do
+    unless has_dependencies?
+      errors.add(:base, "Cannot delete record because dependent exist")
+      throw(:abort)
+    end
+  end
   after_create :assign_role,
-               unless: Proc.new {|user| user.skip_after_create_assign_role}
+               unless: Proc.new {|user|
+                 user.skip_after_create_assign_role
+               }
 
   has_many :users_organizations
   has_many :organizations,
@@ -40,10 +48,14 @@ class User < ApplicationRecord
             unless: lambda {password.nil?},
             on: :update
   validates :virtual_role,
-            inclusion: {in: Role::Role::TYPE_EXTERNALS.keys.map(&:to_s)},
+            inclusion: {in: Role::TYPE_EXTERNALS.keys.map(&:to_s)},
             unless: lambda {self.virtual_role.blank?},
             on: :create,
             presence: true
+
+  def has_dependencies?
+    users_organizations.empty?
+  end
 
   private
 
