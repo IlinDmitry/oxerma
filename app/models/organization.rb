@@ -1,5 +1,5 @@
 class Organization < ApplicationRecord
-  include Imagenable
+  include CarrierwaveConcern
 
   resourcify
 

@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  include Imagenable
+  include CarrierwaveConcern
 
   rolify
   has_secure_password

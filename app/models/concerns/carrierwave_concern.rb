@@ -1,4 +1,4 @@
-module Imagenable
+module CarrierwaveConcern
   extend ActiveSupport::Concern
 
   included do
