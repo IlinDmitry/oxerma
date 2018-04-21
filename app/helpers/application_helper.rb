@@ -7,6 +7,10 @@ module ApplicationHelper
     end
   end
 
+  def link_class_active(target_link)
+    'active' if current_page? target_link
+  end
+
   def bootstrap_class_for(flash_type)
     case flash_type.to_sym
       when :success
