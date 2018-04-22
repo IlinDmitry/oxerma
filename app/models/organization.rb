@@ -9,6 +9,7 @@ class Organization < ApplicationRecord
            dependent: :destroy
   belongs_to :organization_type,
              foreign_key: :type_id
+  has_many :tickets, as: :ticketable
 
   validates :psrn,
             numericality: {only_integer: true},

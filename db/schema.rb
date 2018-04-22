@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_13_063900) do
+ActiveRecord::Schema.define(version: 2018_04_22_071928) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,21 @@ ActiveRecord::Schema.define(version: 2018_04_13_063900) do
     t.datetime "updated_at", null: false
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
+  end
+
+  create_table "tickets", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "biography"
+    t.string "image"
+    t.float "price", null: false
+    t.integer "signature_price", default: 0, null: false
+    t.integer "qty", default: 1, null: false
+    t.integer "signature_qty", default: 0, null: false
+    t.string "ticketable_type"
+    t.bigint "ticketable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ticketable_type", "ticketable_id"], name: "index_tickets_on_ticketable_type_and_ticketable_id"
   end
 
   create_table "users", force: :cascade do |t|

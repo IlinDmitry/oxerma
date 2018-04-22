@@ -24,6 +24,7 @@ class User < ApplicationRecord
   has_many :organizations,
            through: :users_organizations,
            dependent: :destroy
+  has_many :tickets, as: :ticketable
 
   validates :email,
             length: {maximum: 50},

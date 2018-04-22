@@ -1,14 +1,14 @@
 .container
   .text-right
-    = policy(Organization).new? ? link_to('New Organization', new_organization_path) : ''
+    = policy(Organization).new? ? link_to('Новая организация', new_organization_path) : ''
 .container
-  %h1 Listing organizations
+  %h1 Организации
 
   %table
     %thead
       %tr
-        %th Type
-        %th Name
+        %th Тип организации
+        %th Название
         %th
         %th
         %th
@@ -18,6 +18,6 @@
         %tr
           %td= organization.organization_type.name
           %td= organization.name
-          %td= policy(organization).show? ? link_to('Show', organization) : ''
-          %td= policy(organization).edit? ? link_to('Edit', edit_organization_path(organization)) : ''
-          %td= policy(organization).destroy? ? link_to('Destroy', organization, method: :delete, data: { confirm: 'Are you sure?' }) : ''
+          %td= policy(organization).show? ? link_to('Просмотреть', organization) : ''
+          %td= policy(organization).edit? ? link_to('Редактировать', edit_organization_path(organization)) : ''
+          %td= policy(organization).destroy? ? link_to('Уничтожить', organization, method: :delete, data: { confirm: 'Are you sure?' }) : ''
