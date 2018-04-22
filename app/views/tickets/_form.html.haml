@@ -10,23 +10,26 @@
     .field.form-group
       = f.label 'Изображение'
       = f.file_field :image
-  .field
-    = f.label :title
+  .field.form-group
+    = f.label 'Название'
     = f.text_field :title
-  .field
-    = f.label :biography
-    = f.text_field :biography
-  .field
-    = f.label :price
+  .field.form-group
+    = f.label 'Дополнительная информация'
+    = f.text_area :biography, class: 'form-control', rows: 5
+    %small.text-muted
+      Must be no more than 500 characters
+  .field.form-group
+    = f.label 'Стоимость, ед.'
     = f.text_field :price
-  .field
-    = f.label :signature_price
-    = f.text_field :signature_price
-  .field
-    = f.label :qty
+  .field.form-group
+    = f.label 'Тип валюты'
+    = f.select :signature_price, options_for_select([['RUB', 1], ['BYN', 2], ['EUR', 3], ['USD', 4]])
+  .field.form-group
+    = f.label 'Количество'
     = f.text_field :qty
-  .field
-    = f.label :signature_qty
-    = f.text_field :signature_qty
-  .actions
+  .field.form-group
+    = f.label 'Единицы измерения'
+    = f.select :signature_qty, options_for_select([['Миллиграмм', 1], ['Грамм', 2], ['Килограмм', 3], ['Тонна', 4]])
+
+  .actions.form-group
     = f.submit 'Save'
