@@ -22,10 +22,10 @@
         %td= ticket.signature_price
         %td= ticket.qty
         %td= ticket.signature_qty
-        %td= link_to 'Show', ticket
-        %td= link_to 'Edit', edit_ticket_path(ticket)
-        %td= link_to 'Destroy', ticket, method: :delete, data: { confirm: 'Are you sure?' }
+        %td= link_to 'Просмотреть', ticket
+        %td= link_to 'Редактировать', edit_ticket_path(ticket)
+        %td= link_to 'Уничтожить', ticket, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
 
-= link_to 'New Ticket', new_ticket_path
+= link_to 'Новый запрос', new_ticket_path

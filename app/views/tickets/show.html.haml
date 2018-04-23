@@ -1,12 +1,22 @@
 %p#notice= notice
 
 %p
-  %b Title:
+  %b Название:
   = @ticket.title
 %p
-  %b Biography:
+  %b Дополнительная информация:
   = @ticket.biography
+%p
+  %b Стоимость, ед.:
+  = @ticket.price
+%p
+  %b Тип валюты:
+  = @ticket.signature_price
+%p
+  %b Количество:
+  = @ticket.qty
+%p
+  %b Единицы измерения:
+  = @ticket.signature_qty
 
-= link_to 'Edit', edit_ticket_path(@ticket)
-\|
-= link_to 'Back', tickets_path
+= link_to 'Редактировать', edit_ticket_path(@ticket)
