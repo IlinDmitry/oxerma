@@ -21,7 +21,18 @@ class TicketsController < ApplicationController
 
   # POST /tickets
   def create
-    @ticket = Ticket.new(ticket_params)
+    # TODO: refactoring. Dirty style
+    ticketable = ticketable_params
+    case ticketable['ticketable_type'].downcase.to_sym
+      when :user
+        @ticketable = current_user
+      when :organization
+        # TODO: полученный ticketable_id принадлежит одной из организаций пользователя?
+        # @ticketable = current_user.organizations
+      else
+        # type code here
+    end
+    @ticket = @ticketable.tickets.build ticket_params.merge(ticketable)
     @ticket.save!
     redirect_to @ticket, notice: 'Ticket was successfully created.'
   rescue
@@ -50,8 +61,15 @@ class TicketsController < ApplicationController
     @ticket = Ticket.find(params[:id])
   end
 
+  def ticketable_params
+    ticketable = params[:ticket][:ticketable]
+        .match(/^(?<ticketable_type>\w+):(?<ticketable_id>\d+)$/)
+        .named_captures
+    params[:ticket].delete :ticketable
+    ticketable
+  end
 
   def ticket_params
-    params.require(:ticket).permit :title, :biography, :image, :remove_image, :price, :signature_price, :qty, :signature_qty
+    params.require(:ticket).permit :title, :biography, :image, :remove_image, :price, :signature_price, :qty, :signature_qty, :ticketable
   end
 end

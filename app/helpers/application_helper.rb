@@ -7,6 +7,11 @@ module ApplicationHelper
     end
   end
 
+  def ticketable_owners
+    # TODO: сделать выборку по связанным компаниям текущего пользователя
+    [[current_user.email, "#{current_user.class}:#{current_user.id}"]]
+  end
+
   def link_class_active(target_link)
     'active' if current_page? target_link
   end
