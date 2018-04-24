@@ -21,20 +21,20 @@ class TicketsController < ApplicationController
 
   # POST /tickets
   def create
-    # TODO: refactoring. Dirty style
     ticketable = ticketable_params
     case ticketable['ticketable_type'].downcase.to_sym
       when :user
         @ticketable = current_user
       when :organization
-        # TODO: полученный ticketable_id принадлежит одной из организаций пользователя?
-        # @ticketable = current_user.organizations
+        @ticketable = current_user.organizations.each do |model|
+          break model if model.id.eql? ticketable['ticketable_id'].to_i
+        end
       else
-        # type code here
+        raise ArgumentError
     end
     @ticket = @ticketable.tickets.build ticket_params.merge(ticketable)
     @ticket.save!
-    redirect_to @ticket, notice: 'Ticket was successfully created.'
+    redirect_to @ticket, flash: {notice: 'Ticket was successfully created.'}
   rescue
     render :new
   end
