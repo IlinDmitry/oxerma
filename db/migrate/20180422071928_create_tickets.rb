@@ -7,7 +7,7 @@ class CreateTickets < ActiveRecord::Migration[5.2]
       t.float :price, null: false
       t.integer :signature_price, null: false, default: 0
       t.integer :qty, null: false, default: 1
-      t.integer :signature_qty, null: false, default: 0
+      t.integer :signature_qty, null: false, default: 1
       t.references :ticketable, polymorphic: true, index: true
       t.timestamps
     end
