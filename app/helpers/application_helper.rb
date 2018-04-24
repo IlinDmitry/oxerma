@@ -7,9 +7,13 @@ module ApplicationHelper
     end
   end
 
-  def ticketable_owners
-    # TODO: сделать выборку по связанным компаниям текущего пользователя
-    [[current_user.email, "#{current_user.class}:#{current_user.id}"]]
+  def ticketable_selection
+    selection = [[current_user.email, "#{current_user.class}:#{current_user.id}"]]
+    organizations = current_user.organizations.each_with_object([]) do |model, storage|
+      storage << [model.name, "#{model.class}:#{model.id}"]
+    end
+    selection.concat(organizations) if organizations.present?
+    selection
   end
 
   def link_class_active(target_link)

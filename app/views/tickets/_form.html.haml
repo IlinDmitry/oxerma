@@ -12,7 +12,7 @@
       = f.file_field :image
   .field.form-group
     = f.label 'Владелец запроса'
-    = f.select :ticketable, options_for_select(ticketable_owners)
+    = f.select :ticketable, options_for_select(ticketable_selection)
   .field.form-group
     = f.label 'Название'
     = f.text_field :title
