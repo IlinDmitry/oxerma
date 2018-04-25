@@ -34,6 +34,7 @@ class TicketsController < ApplicationController
     end
     @ticket = @ticketable.tickets.build ticket_params.merge(ticketable)
     @ticket.save!
+    current_user.add_role :admin, @ticket
     redirect_to @ticket, flash: {notice: 'Ticket was successfully created.'}
   rescue
     render :new

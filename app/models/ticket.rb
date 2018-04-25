@@ -1,7 +1,7 @@
 class Ticket < ApplicationRecord
   include CarrierwaveConcern
 
-  scopify
+  resourcify
 
   belongs_to :ticketable,
              polymorphic: true
