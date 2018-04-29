@@ -19,4 +19,5 @@
   %b Единицы измерения:
   = @ticket.signature_qty
 
-= link_to 'Редактировать', edit_ticket_path(@ticket)
+- if policy(@ticket).edit?
+  = link_to 'Редактировать', edit_ticket_path(@ticket)

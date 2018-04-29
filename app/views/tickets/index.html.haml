@@ -22,10 +22,11 @@
         %td= ticket.signature_price
         %td= ticket.qty
         %td= ticket.signature_qty
-        %td= link_to 'Просмотреть', ticket
-        %td= link_to 'Редактировать', edit_ticket_path(ticket)
-        %td= link_to 'Уничтожить', ticket, method: :delete, data: { confirm: 'Are you sure?' }
+        %td= policy(ticket).show? ? link_to('Просмотреть', ticket) : ''
+        %td= policy(ticket).edit? ? link_to('Редактировать', edit_ticket_path(ticket)) : ''
+        %td= policy(ticket).destroy? ? link_to('Уничтожить', ticket, method: :delete, data: { confirm: 'Are you sure?' }) : ''
 
 %br
 
-= link_to 'Новый запрос', new_ticket_path
+- if policy(Ticket).new?
+  = link_to 'Новый запрос', new_ticket_path
