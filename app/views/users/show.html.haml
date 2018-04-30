@@ -5,15 +5,13 @@
         = image_tag @user.image.thumb.url, size: '160x160', class: 'rounded'
         %div{style: 'padding-top: 25px;'}
           = policy(@user).edit? ? link_to('Редактировать', edit_user_path(@user), class: 'btn btn-primary') : ''
-        // Заглушка статистики
-        %div{style: 'padding-top: 25px;'}
-          .row
-            .col-md-6
-              %h3 13
-              .text-muted запросов
-            .col-md-6
-              %h3.text-success 3.7
-              .text-muted коэффициент
+        %div{style: 'padding-top: 25px; text-align: left;'}
+          %h5
+            %b Организации
+          .row{style: 'padding-top: 25px;'}
+            - present(@user.organizations) do |organization|
+              .col-md-3
+                = link_to image_tag(organization.image.thumb_small.url, size: '64x64', class: 'rounded'), organization
       .col-md-7
         .row
           %h2
@@ -24,41 +22,38 @@
           %small.text-muted
             Присоединился:
             = @user.created_at.strftime '%F'
-        .row{style: 'padding-top: 25px;'}
-          .card{style: 'width: 100%;'}
-            .card-body
-              %h5.card-title
-                %b Персональная информация
-              - if @user.email.present?
-                .row.form-group
-                  .col-md-4
-                    %small.text-muted Почта:
-                  .col-md-8
-                    = @user.email
-              - if @user.phone.present?
-                .row.form-group
-                  .col-md-4
-                    %small.text-muted Телефонный номер:
-                  .col-md-8
-                    = @user.phone
-              - if @user.birthday.present?
-                .row.form-group
-                  .col-md-4
-                    %small.text-muted День рождения
-                  .col-md-8
-                    = @user.birthday
-              - if @user.biography.present?
-                .row.form-group
-                  .col-md-4
-                    %small.text-muted Дополнительная информация:
-                  .col-md-8
-                    = @user.biography
-        .row{style: 'padding-top: 25px;'}
-          .card{style: 'width: 100%;'}
-            .card-body
-              %h5.card-title
-                %b Организации
-                .row{style: 'padding-top: 25px;'}
-                  - present(@user.organizations) do |organization|
-                    .col-md-3
-                      = link_to image_tag(organization.image.thumb_small.url, size: '96x96', class: 'rounded'), organization
+        .row{style: 'padding-top: 25px; width: 100%;'}
+          %h5
+            %b Персональная информация
+          %div{style: 'padding-top: 25px;'}
+            - if @user.email.present?
+              .row.form-group
+                .col-md-5
+                  %small.text-muted Почта:
+                .col-md-7
+                  = @user.email
+            - if @user.phone.present?
+              .row.form-group
+                .col-md-5
+                  %small.text-muted Телефонный номер:
+                .col-md-7
+                  = @user.phone
+            - if @user.birthday.present?
+              .row.form-group
+                .col-md-5
+                  %small.text-muted День рождения
+                .col-md-7
+                  = @user.birthday
+            - if @user.biography.present?
+              .row.form-group
+                .col-md-5
+                  %small.text-muted Дополнительная информация:
+                .col-md-7
+                  = @user.biography
+        .row{style: 'padding-top: 25px; width: 100%;'}
+          %h5
+            %b Запросы
+          %div{style: 'padding-top: 25px;'}
+            - @user.tickets.each do |ticket|
+              .row
+                = link_to ticket.title, ticket
