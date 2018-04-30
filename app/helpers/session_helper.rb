@@ -2,7 +2,7 @@ module SessionHelper
   def current_user
     return unless session[:user_id]
     @current_user ||= begin
-      User.includes(:roles).find session[:user_id]
+      User.includes(:roles, :organizations, :tickets).find session[:user_id]
     rescue ActiveRecord::RecordNotFound
       nil
     end
