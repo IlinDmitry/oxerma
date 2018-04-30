@@ -13,7 +13,7 @@
           = link_to 'Запрос', tickets_path, class: 'nav-link'
         %li.nav-item.dropdown
           %a.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#"}
-            = current_user.email
+            = image_tag current_user.image.thumb_small.url, size:'24x24', class: 'rounded'
           .dropdown-menu
             = link_to 'Моя страница', user_path(current_user), class: "dropdown-item #{link_class_active(user_path(current_user))}"
             .dropdown-divider

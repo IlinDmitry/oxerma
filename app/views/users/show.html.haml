@@ -61,4 +61,4 @@
                 .row{style: 'padding-top: 25px;'}
                   - present(@user.organizations) do |organization|
                     .col-md-3
-                      = image_tag organization.image.thumb_small.url, size: '96x96', class: 'rounded'
+                      = link_to image_tag(organization.image.thumb_small.url, size: '96x96', class: 'rounded'), organization
