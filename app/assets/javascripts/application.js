@@ -17,3 +17,8 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require bootstrap-sprockets
+
+$(document).ready(function () {
+    // Закрытие flash-сообщения
+    $('.alert').click(function () {$(this).alert('close');});
+});
