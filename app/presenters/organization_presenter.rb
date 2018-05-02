@@ -1,5 +1,5 @@
 class OrganizationPresenter < ApplicationPresenter
   def full_name
-    "\"#{model.organization_type.name}\" #{model.name}"
+    "\"#{model.category}\" #{model.name}"
   end
 end
