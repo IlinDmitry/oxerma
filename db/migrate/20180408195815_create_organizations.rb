@@ -1,14 +1,14 @@
 class CreateOrganizations < ActiveRecord::Migration[5.2]
   def change
     create_table :organizations do |t|
-      t.integer :psrn, null: false, limit: 5
-      t.string :name, null: false, limit: 25
-      t.integer :type_id, null: false
-      t.string :email, null: false
-      t.string :phone, null: false
-      t.text :biography, null: true, default: nil, limit: 500
-      t.string :image, null: true, default: nil
-      t.timestamps
+      t.integer :psrn, null: false, limit: 5 # ОГРН
+      t.string :name, null: false, limit: 25 # Название
+      t.integer :category, null: true, default: 0 # Тип
+      t.string :email, null: false # Почта
+      t.string :phone, null: false # Телефон
+      t.text :biography, null: true, default: nil, limit: 500 # Краткая информация
+      t.string :image, null: true, default: nil # Изображение
+      t.timestamps # Время создания и обновления
     end
     add_index :organizations, :psrn, unique: true
     create_table(:users_organizations, id: false) do |t|

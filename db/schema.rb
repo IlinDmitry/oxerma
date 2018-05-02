@@ -15,17 +15,10 @@ ActiveRecord::Schema.define(version: 2018_04_22_071928) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "organization_types", force: :cascade do |t|
-    t.string "name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_organization_types_on_name", unique: true
-  end
-
   create_table "organizations", force: :cascade do |t|
     t.bigint "psrn", null: false
     t.string "name", limit: 25, null: false
-    t.integer "type_id", null: false
+    t.integer "category", default: 0
     t.string "email", null: false
     t.string "phone", null: false
     t.text "biography"
@@ -52,7 +45,7 @@ ActiveRecord::Schema.define(version: 2018_04_22_071928) do
     t.float "price", null: false
     t.integer "signature_price", default: 0, null: false
     t.integer "qty", default: 1, null: false
-    t.integer "signature_qty", default: 0, null: false
+    t.integer "signature_qty", default: 1, null: false
     t.string "ticketable_type"
     t.bigint "ticketable_id"
     t.datetime "created_at", null: false
@@ -64,10 +57,11 @@ ActiveRecord::Schema.define(version: 2018_04_22_071928) do
     t.string "email", null: false
     t.string "phone", null: false
     t.string "first_name", limit: 25
-    t.string "middle_name", limit: 25
     t.string "last_name", limit: 25
     t.date "birthday"
     t.text "biography"
+    t.text "itn"
+    t.text "inoial"
     t.string "image"
     t.string "password_digest", null: false
     t.datetime "created_at", null: false
