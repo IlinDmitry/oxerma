@@ -1,5 +1,10 @@
 class Organization < ApplicationRecord
   include CarrierwaveConcern
+  include Attributable::Email
+  include Attributable::Phone
+  include Attributable::Biography
+
+  enum category: {undefined: 0, legal: 1, individual: 2}
 
   resourcify
 
@@ -7,8 +12,6 @@ class Organization < ApplicationRecord
   has_many :users,
            through: :users_organizations,
            dependent: :destroy
-  belongs_to :organization_type,
-             foreign_key: :type_id
   has_many :tickets, as: :ticketable
 
   validates :psrn,
@@ -17,12 +20,6 @@ class Organization < ApplicationRecord
             presence: true
   validates :name,
             presence: true
-  validates :type_id,
+  validates :category,
             presence: true
-  validates :email,
-            presence: true
-  validates :phone,
-            presence: true
-  validates :biography,
-            length: {maximum: 500}
 end
