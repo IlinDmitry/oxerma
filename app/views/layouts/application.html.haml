@@ -9,7 +9,6 @@
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
     = render partial: 'partials/header'
-    .container
-      = render partial: 'partials/flash'
+    = render partial: 'partials/flash'
     = yield
     = render partial: 'partials/footer'
