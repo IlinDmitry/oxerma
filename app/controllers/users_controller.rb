@@ -1,18 +1,16 @@
 class UsersController < ApplicationController
-  layout 'authenticated', except: [:new, :create]
-
   before_action :set_user, only: [:show, :edit, :settings, :update, :destroy]
   before_action only: [:show, :edit, :settings, :update, :destroy] {authorize @user}
   before_action only: [:index, :new, :create] {authorize User}
 
   # GET /users
   def index
-    @users = User.preload(:roles).all
+    @users = User.all
   end
 
   # GET /users/1
   def show
-    @user = UserPresenter.new @user
+    @user_presenter = UserPresenter.new @user
   end
 
   # GET /users/new
@@ -64,10 +62,18 @@ class UsersController < ApplicationController
   end
 
   def user_new_params
-    params.require(:user).permit :email, :phone, :virtual_role, :password, :password_confirmation
+    params.require(:user)
+        .permit :email, :phone,
+                :password, :password_confirmation
   end
 
   def user_edit_params
-    params.require(:user).permit :email, :phone, :image, :remove_image, :first_name, :middle_name, :last_name, :biography, :birthday, :password, :password_confirmation, :virtual_role
+    params.require(:user)
+        .permit :email, :phone,
+                :image, :remove_image,
+                :first_name, :last_name,
+                :biography, :birthday,
+                :password, :password_confirmation,
+                :itn, :inoial
   end
 end

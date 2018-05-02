@@ -5,7 +5,7 @@ class OrganizationsController < ApplicationController
 
   # GET /organizations
   def index
-    @organizations = Organization.includes(:organization_type).all
+    @organizations = Organization.all
   end
 
   # GET /organizations/1
@@ -49,16 +49,22 @@ class OrganizationsController < ApplicationController
   private
 
   def set_organization
-    @organization = Organization.includes(:organization_type).find(params[:id])
+    @organization = Organization.find params[:id]
   rescue ActiveRecord::RecordNotFound => e
     redirect_to organizations_path, flash: {alert: e.message}
   end
 
   def organization_new_params
-    params.require(:organization).permit :psrn, :name, :type_id, :email, :phone, :image
+    params.require(:organization)
+        .permit :psrn, :name,
+                :category, :email,
+                :phone, :image
   end
 
   def organization_edit_params
-    params.require(:organization).permit :name, :type_id, :email, :phone, :biography, :image, :remove_image
+    params.require(:organization)
+        .permit :name, :category,
+                :email, :phone, :biography,
+                :image, :remove_image
   end
 end
