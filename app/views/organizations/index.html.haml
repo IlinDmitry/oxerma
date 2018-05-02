@@ -16,7 +16,7 @@
     %tbody
       - @organizations.each do |organization|
         %tr
-          %td= organization.organization_type.name
+          %td= organization.category
           %td= organization.name
           %td= policy(organization).show? ? link_to('Просмотреть', organization) : ''
           %td= policy(organization).edit? ? link_to('Редактировать', edit_organization_path(organization)) : ''

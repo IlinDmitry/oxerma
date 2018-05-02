@@ -15,11 +15,15 @@
       = f.label 'Имя'
       = f.text_field :first_name, class: 'form-control'
     .col-md-6
-      = f.label 'Отчество'
-      = f.text_field :middle_name, class: 'form-control'
-  .field.form-group
-    = f.label 'Фамилия'
-    = f.text_field :last_name, class: 'form-control'
+      = f.label 'Фамилия'
+      = f.text_field :last_name, class: 'form-control'
+  .row.field.form-group
+    .col-md-6
+      = f.label 'ИНН'
+      = f.text_field :itn, class: 'form-control'
+    .col-md-6
+      = f.label 'СНИЛС'
+      = f.text_field :inoial, class: 'form-control'
   .field.form-group
     = f.label 'День рождения'
     = f.date_field :birthday, class: 'form-control'

@@ -1,17 +1,10 @@
-.row{style: 'margin-top: 20px;'}
-  .col-sm-6
-    %h1 Пользователи
-.row{style: 'margin-top: 20px;'}
-  - present(@users) do |user|
-    .col-md-6{style: 'margin-top: 30px;'}
-      .card
-        .card-body
-          .row
-            .col-md-3
-              = image_tag user.image.thumb_small.url, size:'72x72', class: 'rounded'
-            .col-md-9
-              %h5.card-title= user.email
-              %h6.card-subtitle.mb-2.text-muted= user.roles.first.name
-          .row{style: 'margin-top: 30px;'}
-          %p.card-text= truncate user.biography, length: 100
-          = link_to 'Просмотреть', user, class: 'card-link'
+.container
+  .row.align-items-center{style: 'margin-top: 25px;'}
+    .col-md-6
+      %h1 Пользователи
+    .col-md-6.text-right
+      = link_to 'Пригласить', '#', class: 'btn btn-primary'
+  .row{style: 'margin-top: 25px;'}
+    - @users.each do |user|
+      .col-md-1
+        = link_to image_tag(user.image.thumb_small.url, size: '72x72', class: 'rounded'), user, {'data-toggle': "tooltip", 'data-placement': "top", title: "#{user.email}"}

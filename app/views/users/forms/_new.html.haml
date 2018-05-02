@@ -7,10 +7,7 @@
     = f.text_field :email, class: 'form-control', placeholder: 'name@email.domain'
   .field.form-group
     = f.label 'Телефон'
-    = f.text_field :phone, class: 'form-control', placeholder: '+7 000-000-00-00'
-  .field.form-group
-    = f.label 'Выбирите тип аккаунта:'
-    = f.select :virtual_role, Role::TYPE_EXTERNALS.invert, class: 'form-control'
+    = f.text_field :phone, class: 'form-control', placeholder: '+7 000-000-0000'
   .field.form-group
     = f.label 'Пароль'
     = f.password_field :password, class: 'form-control'
