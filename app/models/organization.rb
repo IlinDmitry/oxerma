@@ -4,7 +4,7 @@ class Organization < ApplicationRecord
   include Attributable::Phone
   include Attributable::Biography
 
-  enum category: {undefined: 0, legal: 1, individual: 2}
+  enum category: [:undefined, :legal, :individual]
 
   resourcify
 

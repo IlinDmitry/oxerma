@@ -26,13 +26,13 @@
     = f.text_field :price
   .field.form-group
     = f.label 'Тип валюты'
-    = f.select :signature_price, options_for_select([['RUB', 1], ['BYN', 2], ['EUR', 3], ['USD', 4]])
+    = f.select :signature_price, ticket_signature_price_selection
   .field.form-group
     = f.label 'Количество'
     = f.text_field :qty
   .field.form-group
     = f.label 'Единицы измерения'
-    = f.select :signature_qty, options_for_select([['Миллиграмм', 1], ['Грамм', 2], ['Килограмм', 3], ['Тонна', 4]])
+    = f.select :signature_qty, ticket_signature_qties_selection
 
   .actions.form-group
     = f.submit 'Save'

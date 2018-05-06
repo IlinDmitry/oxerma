@@ -1,6 +1,9 @@
 class Ticket < ApplicationRecord
   include CarrierwaveConcern
 
+  enum signature_price: [:rub, :byn, :usd, :eur]
+  enum signature_qty: [:unit, :gram, :kilogram, :ton, :milliliter, :litre]
+
   resourcify
 
   belongs_to :ticketable,
@@ -13,11 +16,9 @@ class Ticket < ApplicationRecord
   validates :price,
             presence: true
   validates :signature_price,
-            numericality: {greater_than_or_equal_to: 0},
             presence: true
   validates :qty,
             numericality: {greater_than_or_equal_to: 1}
   validates :signature_qty,
-            numericality: {greater_than_or_equal_to: 1}
-
+            presence: true
 end

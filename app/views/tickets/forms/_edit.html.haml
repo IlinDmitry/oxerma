@@ -1,0 +1,35 @@
+= form_for @ticket do |f|
+
+  = render partial: 'partials/errors', locals: {model: @ticket}
+
+  - if @ticket.image.present?
+    .field.form-group
+      = f.label 'Удалить изображение'
+      = f.check_box :remove_image
+  - else
+    .field.form-group
+      = f.label 'Изображение'
+      = f.file_field :image
+  .field.form-group
+    = f.label 'Название'
+    = f.text_field :title
+  .field.form-group
+    = f.label 'Дополнительная информация'
+    = f.text_area :biography, class: 'form-control', rows: 5
+    %small.text-muted
+      Must be no more than 500 characters
+  .field.form-group
+    = f.label 'Стоимость, ед.'
+    = f.text_field :price
+  .field.form-group
+    = f.label 'Тип валюты'
+    = f.select :signature_price, ticket_signature_price_selection
+  .field.form-group
+    = f.label 'Количество'
+    = f.text_field :qty
+  .field.form-group
+    = f.label 'Единицы измерения'
+    = f.select :signature_qty, ticket_signature_qties_selection
+
+  .actions.form-group
+    = f.submit 'Save'

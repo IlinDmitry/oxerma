@@ -7,6 +7,12 @@ module ApplicationHelper
     end
   end
 
+  def enum_selection(hash)
+    hash.keys.each_with_object([]) do |item, memo|
+      memo << [item, item]
+    end
+  end
+
   def ticketable_selection
     selection = [[current_user.email, "#{current_user.class}:#{current_user.id}"]]
     organizations = current_user.organizations.each_with_object([]) do |model, storage|
