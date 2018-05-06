@@ -28,18 +28,21 @@ class TicketsController < ApplicationController
       when :user
         @ticketable = current_user
       when :organization
-        @ticketable = current_user.organizations.each do |model|
-          break model if model.id.eql? ticketable['ticketable_id'].to_i
-        end
+        # TODO: добавить проверку существования организации
+        organization = Organization.find ticketable['ticketable_id'].to_i
+        @ticketable = current_user.has_cached_role?(:admin, organization) ? organization : nil
       else
         raise ArgumentError
     end
+    # TODO: существует ли инстансная переменная @ticketable?
     @ticket = @ticketable.tickets.build ticket_params.merge(ticketable)
-    @ticket.save!
-    current_user.add_role :admin, @ticket
-    redirect_to @ticket, flash: {notice: 'Ticket was successfully created.'}
-  rescue
-    render :new
+    begin
+      @ticket.save!
+      current_user.add_role :admin, @ticket
+      redirect_to @ticket, flash: {notice: 'Ticket was successfully created.'}
+    rescue
+      render :new
+    end
   end
 
   # PATCH/PUT /tickets/1
@@ -66,8 +69,8 @@ class TicketsController < ApplicationController
 
   def ticketable_params
     ticketable = params[:ticket][:ticketable]
-        .match(/^(?<ticketable_type>\w+):(?<ticketable_id>\d+)$/)
-        .named_captures
+                     .match(/^(?<ticketable_type>\w+):(?<ticketable_id>\d+)$/)
+                     .named_captures
     params[:ticket].delete :ticketable
     ticketable
   end
