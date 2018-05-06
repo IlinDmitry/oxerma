@@ -7,9 +7,6 @@ class User < ApplicationRecord
   rolify
   has_secure_password
 
-  attr_accessor :virtual_role
-  attr_accessor :skip_after_create_assign_role
-
   before_destroy do
     if has_dependencies?
       errors.add(:base, "Cannot delete record because dependent exist")

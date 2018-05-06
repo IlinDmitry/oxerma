@@ -20,11 +20,6 @@
             .col-md-3
               = link_to image_tag(organization.image.thumb.url, size: '48x48', class: 'rounded'), organization, {'data-toggle': "tooltip", 'data-placement': "top", title: "#{organization.name}"}
   .col-md-9.float-left
-    %div
-      %b Страховая информация
-      %div{style: 'margin-top: 10px;'}
-        ИНН:
-        = @user_presenter.itn
-      %div{style: 'margin-top: 10px;'}
-        СНИЛС:
-        = @user_presenter.inoial
+    %b
+    .row{style: 'margin-top: 10px;'}
+      .col-md-12
