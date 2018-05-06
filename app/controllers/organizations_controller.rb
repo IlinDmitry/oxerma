@@ -23,11 +23,14 @@ class OrganizationsController < ApplicationController
 
   # POST /organizations
   def create
-    @organization = current_user.organizations.create! organization_new_params
-    current_user.add_role :admin, @organization
-    redirect_to @organization, flash: {success: 'Организация успешно создана'}
-  rescue ActiveRecord::RecordInvalid
-    render :new
+    @organization = current_user.organizations.build organization_new_params
+    begin
+      @organization.save!
+      current_user.add_role :admin, @organization
+      redirect_to @organization, flash: {success: 'Организация успешно создана'}
+    rescue ActiveRecord::RecordInvalid
+      render :new
+    end
   end
 
   # PATCH/PUT /organizations/1
