@@ -10,20 +10,21 @@
     .field.form-group
       = f.label 'Изображение'
       = f.file_field :image
-  .field.form-group
-    = f.label 'Имя'
-    = f.text_field :name, class: 'form-control'
-  .field.form-group
-    = f.label 'Правовая норма'
-    = f.select :category, organization_category_selection
+  .row.field.form-group
+    .col-md-6
+      = f.label 'Правовая норма'
+      = f.select :category, organization_category_selection
+    .col-md-6
+      = f.label 'Название'
+      = f.text_field :name, class: 'form-control'
   .field.form-group
     = f.label 'Почта'
     = f.text_field :email, class: 'form-control', placeholder: 'name@email.domain'
   .field.form-group
     = f.label 'Телефон'
-    = f.text_field :phone, class: 'form-control', placeholder: '+7 000-000-0000'
+    = f.text_field :phone, class: 'form-control', placeholder: '+7-000-000-0000'
   .field.form-group
-    = f.label :biography
+    = f.label 'Описание'
     = f.text_area :biography, class: 'form-control'
     %small.text-muted
       Must be no more than 500 characters
