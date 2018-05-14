@@ -1,7 +1,8 @@
-%h1 Editing ticket
-
-= render 'tickets/forms/edit'
-
-= link_to 'Show', @ticket
-\|
-= link_to 'Back', tickets_path
+.container{style: 'margin-top: 20px;'}
+  .row
+    .col-sm-6
+      %h1 Редактирование
+.container{style: 'margin-top: 20px;'}
+  .row
+    .col-sm-4
+      = render 'tickets/forms/edit'

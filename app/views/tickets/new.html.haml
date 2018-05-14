@@ -1,5 +1,8 @@
-%h1 Новая заявка
-
-= render 'tickets/forms/new'
-
-= link_to 'Back', tickets_path
+.container{style: 'margin-top: 20px;'}
+  .row
+    .col-sm-6
+      %h1 Новый запрос
+.container{style: 'margin-top: 20px;'}
+  .row
+    .col-sm-6
+      = render 'tickets/forms/new'

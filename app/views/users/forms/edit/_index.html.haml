@@ -4,8 +4,12 @@
 
   - if @user.image.present?
     .field.form-group
-      = f.label 'Удалить изображение'
-      = f.check_box :remove_image
+      .row
+        .col-md-3
+          = image_tag @user.image.thumb.url, class: 'rounded'
+        .col-md-9
+          = f.label 'Удалить изображение'
+          = f.check_box :remove_image
   - else
     .field.form-group
       = f.label 'Изображение'
@@ -33,4 +37,4 @@
     %small.text-muted
       Must be no more than 500 characters
   .actions.form-group
-    = f.submit 'Обновить'
+    = f.submit 'Обновить', class: 'btn btn-primary'

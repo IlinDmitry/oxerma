@@ -1,23 +1,24 @@
 .container
-  .text-right
-    = policy(Organization).new? ? link_to('Новая организация', new_organization_path) : ''
-.container
-  %h1 Организации
-
-  %table
-    %thead
-      %tr
-        %th Тип организации
-        %th Название
-        %th
-        %th
-        %th
-
-    %tbody
-      - @organizations.each do |organization|
+  .row.align-items-center{style: 'margin-top: 25px;'}
+    .col-md-6
+      %h1 Запросы
+    .col-md-6.text-right
+      = link_to 'Новая организация', new_organization_path, class: 'btn btn-primary'
+  .row{style: 'margin-top: 25px;'}
+    %table
+      %thead
         %tr
-          %td= organization.category
-          %td= organization.name
-          %td= policy(organization).show? ? link_to('Просмотреть', organization) : ''
-          %td= policy(organization).edit? ? link_to('Редактировать', edit_organization_path(organization)) : ''
-          %td= policy(organization).destroy? ? link_to('Уничтожить', organization, method: :delete, data: { confirm: 'Are you sure?' }) : ''
+          %th Тип организации
+          %th Название
+          %th
+          %th
+          %th
+
+      %tbody
+        - @organizations.each do |organization|
+          %tr
+            %td= organization.category
+            %td= organization.name
+            %td= policy(organization).show? ? link_to('Просмотреть', organization) : ''
+            %td= policy(organization).edit? ? link_to('Редактировать', edit_organization_path(organization)) : ''
+            %td= policy(organization).destroy? ? link_to('Уничтожить', organization, method: :delete, data: { confirm: 'Are you sure?' }) : ''
