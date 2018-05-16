@@ -4,7 +4,7 @@ class TicketPolicy < ApplicationPolicy
   end
 
   def show?
-    @user
+    true
   end
 
   def new?
@@ -20,10 +20,10 @@ class TicketPolicy < ApplicationPolicy
   end
 
   def update?
-    @user.has_cached_role? :admin, @record
+    @user.try :has_cached_role?, :admin, @record
   end
 
   def destroy?
-    @user.has_cached_role? :admin, @record
+    @user.try :has_cached_role?, :admin, @record
   end
 end
