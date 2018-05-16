@@ -1,7 +1,7 @@
 .container{style: 'margin-top: 25px;'}
   .col-md-3.float-left
     %div
-      = image_tag @user_presenter.image.thumb.url, class: 'rounded', style: 'width: 100%;'
+      = image_tag @user_presenter.image.url, class: 'rounded', style: 'width: 100%;'
     %div{style: 'margin-top: 20px;'}
       .h4
         %b= @user_presenter.full_name
