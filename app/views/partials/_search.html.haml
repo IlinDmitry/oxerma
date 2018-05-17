@@ -1,0 +1,11 @@
+.input-group
+  %input.form-control{placeholder: "Введите интересующий запрос", type: "text", style: 'height: 60px;'}
+  .input-group-append
+    %button.btn.btn-outline-primary{:type => "button"} Поиск
+    %button.btn.btn-outline-primary.dropdown-toggle.dropdown-toggle-split{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+      %span.sr-only Toggle Dropdown
+    .dropdown-menu
+      %a.dropdown-item{:href => "#"} Приоритетные
+      .dropdown-divider{:role => "separator"}
+      %a.dropdown-item{:href => "#"} Продажа
+      %a.dropdown-item{:href => "#"} Покупка
