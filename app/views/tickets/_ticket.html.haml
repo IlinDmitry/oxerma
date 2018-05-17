@@ -1,5 +1,9 @@
 .col-md-3{style: 'margin-top: 25px;'}
   .card
+    .card-header
+      .text-muted
+        = [true, false].sample ? 'Покупка' : 'Продажа'
+        № "#{ticket.id}"
     = link_to (image_tag ticket.image.url, size: '253x158'), ticket
     .card-body
       %div
