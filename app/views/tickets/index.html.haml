@@ -5,5 +5,8 @@
     .col-md-6.text-right
       = link_to 'Новый запрос', new_ticket_path, class: 'btn btn-primary'
   .row{style: 'margin-top: 25px;'}
+    .col-md-6
+      = render partial: 'partials/search'
+  .row{style: 'margin-top: 25px;'}
     - @tickets.each do |ticket|
       = render partial: 'tickets/ticket', locals: {ticket: ticket}

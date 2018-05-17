@@ -9,7 +9,7 @@
       = link_to 'Присоединиться', new_user_path, class: 'btn btn-success'
   .row
     .col-md-12
-      %input.form-control{placeholder: 'Введите ключевое слово', type: 'text', 'style': 'height: 60px;'}
+      = render partial: 'partials/search'
   .row
     - @tickets.each do |ticket|
       = render partial: 'tickets/ticket', locals: {ticket: ticket}
