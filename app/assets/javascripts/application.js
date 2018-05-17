@@ -12,6 +12,7 @@
 //
 //= require rails-ujs
 //= require activestorage
+//= require popper
 //= require turbolinks
 //= require jquery
 //= require jquery_ujs
@@ -20,5 +21,7 @@
 
 $(document).ready(function () {
     // Закрытие flash-сообщения
-    $('.alert').click(function () {$(this).alert('close');});
+    $('.alert').click(function () {
+        $(this).alert('close');
+    });
 });
