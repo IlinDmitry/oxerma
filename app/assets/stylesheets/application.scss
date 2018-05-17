@@ -13,3 +13,11 @@
  *= require_self
  */
 @import "bootstrap";
+
+wrapper {
+  min-height: 100vh;
+}
+
+.flex-fill {
+  flex: 1 1 auto;
+}
