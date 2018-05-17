@@ -12,15 +12,4 @@
       %input.form-control{placeholder: 'Введите ключевое слово', type: 'text', 'style': 'height: 60px;'}
   .row
     - @tickets.each do |ticket|
-      .col-md-3{style: 'margin-top: 25px;'}
-        .card
-          = link_to (image_tag ticket.image.url, size: '253x158'), ticket
-          .card-body
-            %h5.card-title= ticket.title
-            %p.card-text
-              %small
-                = "#{ticket.price} #{ticket.signature_price} / #{ticket.signature_qty}"
-            %p.card-text
-              %small.text-muted
-                Last updated
-                = distance_of_time_in_words ticket.updated_at, Time.now
+      = render partial: 'tickets/ticket', locals: {ticket: ticket}

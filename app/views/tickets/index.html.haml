@@ -5,27 +5,5 @@
     .col-md-6.text-right
       = link_to 'Новый запрос', new_ticket_path, class: 'btn btn-primary'
   .row{style: 'margin-top: 25px;'}
-    %table
-      %thead
-        %tr
-          %th Название
-          %th Описание
-          %th Стоимость
-          %th Тип валюты
-          %th Количество
-          %th Единицы измерения
-          %th
-          %th
-          %th
-      %tbody
-        - @tickets.each do |ticket|
-          %tr
-            %td= ticket.title
-            %td= ticket.biography
-            %td= ticket.price
-            %td= ticket.signature_price
-            %td= ticket.qty
-            %td= ticket.signature_qty
-            %td= policy(ticket).show? ? link_to('Просмотреть', ticket) : ''
-            %td= policy(ticket).edit? ? link_to('Редактировать', edit_ticket_path(ticket)) : ''
-            %td= policy(ticket).destroy? ? link_to('Уничтожить', ticket, method: :delete, data: { confirm: 'Are you sure?' }) : ''
+    - @tickets.each do |ticket|
+      = render partial: 'tickets/ticket', locals: {ticket: ticket}
