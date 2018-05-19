@@ -5,8 +5,35 @@
     .col-md-6.text-right
       = link_to 'Новый запрос', new_ticket_path, class: 'btn btn-primary'
   .row{style: 'margin-top: 25px;'}
-    .col-md-6
+    .col-md-12
       = render partial: 'partials/search'
   .row{style: 'margin-top: 25px;'}
-    - @tickets.each do |ticket|
-      = render partial: 'tickets/ticket', locals: {ticket: ticket}
+    .col-md-8
+      - @tickets.each do |ticket|
+        .row{style: 'margin-top: 25px;'}
+          .col-md-3
+            = image_tag ticket.image.url, class: 'img-thumbnail'
+          .col-md-9
+            .row
+              .col-md-6
+                %b= ticket.title
+              .col-md-6.text-right
+                %small.text-muted
+                  Обновлено
+                  = distance_of_time_in_words ticket.updated_at, Time.now
+                  назад
+            .row
+    .col-md-4
+      .card.card-default
+        %b.card-header Фильтрация
+        .card-body
+          %div
+            %div
+              %b.text-muted Тип
+            %div{style: 'margin-top: 10px;'}
+              = select_tag "filter_type", options_for_select([ "требование", "предложение" ], "требование")
+          %div{style: 'margin-top: 25px;'}
+            %div
+              %b.text-muted Сортировка
+            %div{style: 'margin-top: 10px;'}
+            = select_tag "filter_type", options_for_select(["по цене", "по популярности", "по дате",], "требование")
