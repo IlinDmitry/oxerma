@@ -2,12 +2,18 @@ class ApplicationController < ActionController::Base
   include SessionHelper
   include Pundit
 
+  before_action :set_locale
+
   rescue_from Pundit::NotAuthorizedError,
               with: :user_not_authorized
   rescue_from ActionController::InvalidAuthenticityToken,
               with: :invalid_authenticity_token
 
   private
+
+  def set_locale
+    I18n.locale = params[:locale] || I18n.default_locale
+  end
 
   def user_not_authorized
     flash[:alert] = 'You are not authorized to perform this action.'
