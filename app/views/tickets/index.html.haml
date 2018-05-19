@@ -31,9 +31,14 @@
             %div
               %b.text-muted Тип
             %div{style: 'margin-top: 10px;'}
-              = select_tag "filter_type", options_for_select([ "требование", "предложение" ], "требование")
+              = select_tag "filter_type", options_for_select(["не выбрано", "требование", "предложение" ], "не выбрано")
+          %div{style: 'margin-top: 25px;'}
+            %div
+              %b.text-muted Принадлежность
+            %div{style: 'margin-top: 10px;'}
+            = select_tag "filter_type", options_for_select(["не выбрано", "мои запросы", "запросы моих организаций", "все запросы"], "не выбрано")
           %div{style: 'margin-top: 25px;'}
             %div
               %b.text-muted Сортировка
             %div{style: 'margin-top: 10px;'}
-            = select_tag "filter_type", options_for_select(["по цене", "по популярности", "по дате",], "требование")
+            = select_tag "filter_type", options_for_select(["не выбрано", "по цене", "по популярности", "по дате",], "не выбрано")
