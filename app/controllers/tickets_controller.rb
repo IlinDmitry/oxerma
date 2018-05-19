@@ -5,7 +5,7 @@ class TicketsController < ApplicationController
 
   # GET /tickets
   def index
-    @tickets = Ticket.all
+    @tickets = Ticket.order(updated_at: :desc).all
   end
 
   # GET /tickets/1
