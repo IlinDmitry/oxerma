@@ -12,4 +12,5 @@
       = render partial: 'partials/search'
   .row
     - @tickets.each do |ticket|
-      = render partial: 'tickets/ticket', locals: {ticket: ticket}
+      .col-md-3{style: 'margin-top: 25px;'}
+        = render partial: 'tickets/ticket', locals: {ticket: ticket}
