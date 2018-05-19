@@ -1,6 +1,5 @@
 class SessionsController < ApplicationController
-  before_action only: [:new, :create] {authorize :Session}
-  before_action only: [:destroy] {authorize :Session}
+  before_action {authorize :Session}
 
   def new
   end
