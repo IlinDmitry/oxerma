@@ -13,4 +13,21 @@
   .row
     - @tickets.each do |ticket|
       .col-md-3{style: 'margin-top: 25px;'}
-        = render partial: 'tickets/ticket', locals: {ticket: ticket}
+        .card
+          .card-header
+            .text-muted
+              %small
+                = [true, false].sample ? 'требование' : 'предложение'
+                = '# ' + ticket.id.to_s
+          = link_to (image_tag ticket.image.url, size: '253x158'), ticket
+          .card-body
+            %div
+              %h5.card-title= ticket.title
+            %p.card-text
+              %small
+                = "#{ticket.price} #{ticket.signature_price} / #{ticket.signature_qty}"
+            %p.card-text
+              %small.text-muted
+                Обновлено
+                = distance_of_time_in_words ticket.updated_at, Time.now
+                назад
