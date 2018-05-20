@@ -5,7 +5,7 @@ class OrganizationsController < ApplicationController
 
   # GET /organizations
   def index
-    @organizations = Organization.order(updated_at: :desc).all
+    @organizations = Organization.order(created_at: :desc).all
   end
 
   # GET /organizations/1

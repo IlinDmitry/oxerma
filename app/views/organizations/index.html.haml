@@ -19,8 +19,8 @@
                 %b= organization.name
               .col-md-6.text-right
                 %small.text-muted
-                  Обновлено
-                  = distance_of_time_in_words organization.updated_at, Time.now
+                  Создана
+                  = distance_of_time_in_words organization.created_at, Time.now
                   назад
             .row
     .col-md-4
