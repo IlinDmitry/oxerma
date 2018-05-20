@@ -5,6 +5,37 @@
     .col-md-6.text-right
       = link_to 'Пригласить', '#', class: 'btn btn-primary'
   .row{style: 'margin-top: 25px;'}
-    - @users.each do |user|
-      .col-md-1
-        = link_to image_tag(user.image.thumb_small.url, size: '72x72', class: 'rounded'), user, {'data-toggle': "tooltip", 'data-placement': "top", title: "#{user.email}"}
+    .col-md-12
+      = render partial: 'partials/search'
+  .row{style: 'margin-top: 25px;'}
+    .col-md-8
+      - @users.each do |user|
+        .row{style: 'margin-top: 25px;'}
+          .col-md-3
+            = image_tag user.image.thumb.url, class: 'img-thumbnail'
+          .col-md-9
+            .row
+              .col-md-6
+                %b
+                  = user.last_name
+                  = user.first_name
+              .col-md-6.text-right
+                %small.text-muted
+                  Создана
+                  = distance_of_time_in_words user.created_at, Time.now
+                  назад
+            .row
+    .col-md-4
+      .card.card-default
+        %b.card-header Фильтрация
+        .card-body
+          %div
+            %div
+              %b.text-muted Принадлежность
+            %div{style: 'margin-top: 10px;'}
+            = select_tag "filter_type", options_for_select(["не выбрано", "мои организации", "все организации"], "не выбрано")
+          %div{style: 'margin-top: 25px;'}
+            %div
+              %b.text-muted Сортировка
+            %div{style: 'margin-top: 10px;'}
+            = select_tag "filter_type", options_for_select(["не выбрано", "по рейтингу", "по дате"], "не выбрано")
