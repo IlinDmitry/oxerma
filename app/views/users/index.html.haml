@@ -31,11 +31,6 @@
         .card-body
           %div
             %div
-              %b.text-muted Принадлежность
-            %div{style: 'margin-top: 10px;'}
-            = select_tag "filter_type", options_for_select(["не выбрано", "мои организации", "все организации"], "не выбрано")
-          %div{style: 'margin-top: 25px;'}
-            %div
               %b.text-muted Сортировка
             %div{style: 'margin-top: 10px;'}
             = select_tag "filter_type", options_for_select(["не выбрано", "по рейтингу", "по дате"], "не выбрано")
