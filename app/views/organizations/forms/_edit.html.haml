@@ -1,12 +1,12 @@
-= form_for @organization do |f|
+= form_for organization do |f|
 
-  = render partial: 'partials/errors', locals: {model: @organization}
+  = render partial: 'partials/errors', locals: {model: organization}
 
-  - if @organization.image.present?
+  - if organization.image.present?
     .field.form-group
       .row
         .col-md-3
-          = image_tag @organization.image.thumb.url, class: 'rounded'
+          = image_tag organization.image.thumb.url, class: 'rounded'
         .col-md-9
           = f.label 'Удалить изображение'
           = f.check_box :remove_image

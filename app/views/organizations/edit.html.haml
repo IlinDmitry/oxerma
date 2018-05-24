@@ -3,4 +3,4 @@
 .container{style: 'margin-top: 20px;'}
   .row
     .col-sm-6
-      = render 'organizations/forms/edit'
+      = render partial: 'organizations/forms/edit', locals: {organization: @organization}

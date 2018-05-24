@@ -6,19 +6,22 @@ class OrganizationsController < ApplicationController
   # GET /organizations
   def index
     @organizations = Organization.order(created_at: :desc).all
+    render :index, locals: {organizations: @organizations}
   end
 
   # GET /organizations/1
   def show
+    render :show, locals: {organization: @organization}
   end
 
   # GET /organizations/new
   def new
-    @organization = Organization.new
+    render :new, locals: {organization: Organization.new}
   end
 
   # GET /organizations/1/edit
   def edit
+    render :edit, locals: {organization: @organization}
   end
 
   # POST /organizations
@@ -29,7 +32,7 @@ class OrganizationsController < ApplicationController
       current_user.add_role :admin, @organization
       redirect_to @organization, flash: {success: 'Организация успешно создана'}
     rescue ActiveRecord::RecordInvalid
-      render :new
+      render :new, locals: {organization: @organization}
     end
   end
 
@@ -38,7 +41,7 @@ class OrganizationsController < ApplicationController
     @organization.update! organization_edit_params
     redirect_to @organization, flash: {success: 'Организация успешно обновлена'}
   rescue
-    render :edit
+    render :edit, locals: {organization: @organization}
   end
 
   # DELETE /organizations/1

@@ -9,7 +9,7 @@
       = render partial: 'partials/search'
   .row{style: 'margin-top: 25px;'}
     .col-md-8
-      - @organizations.each do |organization|
+      - organizations.each do |organization|
         .row{style: 'margin-top: 25px;'}
           .col-md-3
             = image_tag organization.image.url, class: 'img-thumbnail'
