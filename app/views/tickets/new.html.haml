@@ -5,4 +5,4 @@
 .container{style: 'margin-top: 20px;'}
   .row
     .col-sm-6
-      = render 'tickets/forms/new'
+      = render partial: 'tickets/forms/new', locals: {ticket: ticket}

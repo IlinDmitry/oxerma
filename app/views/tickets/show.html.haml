@@ -1,21 +1,21 @@
 %p
   %b Название:
-  = @ticket.title
+  = ticket.title
 %p
   %b Дополнительная информация:
-  = @ticket.biography
+  = ticket.biography
 %p
   %b Стоимость, ед.:
-  = @ticket.price
+  = ticket.price
 %p
   %b Тип валюты:
-  = @ticket.signature_price
+  = ticket.signature_price
 %p
   %b Количество:
-  = @ticket.qty
+  = ticket.qty
 %p
   %b Единицы измерения:
-  = @ticket.signature_qty
+  = ticket.signature_qty
 
-- if policy(@ticket).edit?
-  = link_to 'Редактировать', edit_ticket_path(@ticket)
+- if policy(ticket).edit?
+  = link_to 'Редактировать', edit_ticket_path(ticket)

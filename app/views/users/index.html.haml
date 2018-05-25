@@ -9,7 +9,7 @@
       = render partial: 'partials/search'
   .row{style: 'margin-top: 25px;'}
     .col-md-8
-      - @users.each do |user|
+      - users.each do |user|
         .row{style: 'margin-top: 25px;'}
           .col-md-3
             = image_tag user.image.thumb.url, class: 'img-thumbnail'

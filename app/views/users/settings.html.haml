@@ -3,4 +3,4 @@
 .container{style: 'margin-top: 20px;'}
   .row
     .col-sm-8
-      = render partial: 'users/forms/settings/index'
+      = render partial: 'users/forms/settings/index', locals: {user: user}

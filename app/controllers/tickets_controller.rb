@@ -6,19 +6,22 @@ class TicketsController < ApplicationController
   # GET /tickets
   def index
     @tickets = Ticket.order(updated_at: :desc).all
+    render :index, locals: {tickets: @tickets}
   end
 
   # GET /tickets/1
   def show
+    render :show, locals: {ticket: @ticket}
   end
 
   # GET /tickets/new
   def new
-    @ticket = Ticket.new
+    render :new, locals: {ticket: Ticket.new}
   end
 
   # GET /tickets/1/edit
   def edit
+    render :edit, locals: {ticket: @ticket}
   end
 
   # POST /tickets
@@ -41,7 +44,7 @@ class TicketsController < ApplicationController
       current_user.add_role :admin, @ticket
       redirect_to @ticket, flash: {notice: 'Ticket was successfully created.'}
     rescue
-      render :new
+      render :new, locals: {ticket: @ticket}
     end
   end
 

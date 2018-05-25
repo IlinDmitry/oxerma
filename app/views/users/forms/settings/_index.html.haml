@@ -1,6 +1,6 @@
-= form_for @user do |f|
+= form_for user do |f|
 
-  = render partial: 'partials/errors', locals: {model: @user}
+  = render partial: 'partials/errors', locals: {model: user}
 
   .field.form-group
     = f.label 'Почта'
@@ -23,14 +23,14 @@
       .card-body
         %h5.card-title.text-danger
           %b Удаление аккаунта
-        - if policy(@user).destroy?
+        - if policy(user).destroy?
           %p.card-text
             Теперь вы можете
-            = link_to 'удалить свой аккаунт', @user, method: :delete, data: { confirm: 'Are you sure?' }
+            = link_to 'удалить свой аккаунт', user, method: :delete, data: { confirm: 'Are you sure?' }
         - else
           %p.card-text
             В настоящее время Вы являетесь владельцем организаций:
-            - present(@user.organizations) do |organization|
+            - present(user.organizations) do |organization|
               %b= link_to organization.full_name, organization
           %p.card-text
             Пожалуйста, удалите текущие зависимости, чтобы произвести удаление своего аккаунта

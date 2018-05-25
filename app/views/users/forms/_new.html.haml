@@ -1,6 +1,6 @@
-= form_for @user do |f|
+= form_for user do |f|
 
-  = render partial: 'partials/errors', locals: {model: @user}
+  = render partial: 'partials/errors', locals: {model: user}
 
   .field.form-group
     = f.label 'Почта'

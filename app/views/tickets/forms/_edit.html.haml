@@ -1,8 +1,8 @@
-= form_for @ticket do |f|
+= form_for ticket do |f|
 
-  = render partial: 'partials/errors', locals: {model: @ticket}
+  = render partial: 'partials/errors', locals: {model: ticket}
 
-  - if @ticket.image.present?
+  - if ticket.image.present?
     .field.form-group
       = f.label 'Удалить изображение'
       = f.check_box :remove_image

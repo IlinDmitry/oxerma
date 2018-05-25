@@ -6,24 +6,28 @@ class UsersController < ApplicationController
   # GET /users
   def index
     @users = User.order(created_at: :desc).all
+    render :index, locals: {users: @users}
   end
 
   # GET /users/1
   def show
-    @user_presenter = UserPresenter.new @user
+    user = UserPresenter.new @user
+    render :show, locals: {user: user}
   end
 
   # GET /users/new
   def new
-    @user = User.new
+    render :new, locals: {user: User.new}
   end
 
   # GET /users/1/edit
   def edit
+    render :edit, locals: {user: @user}
   end
 
   # GET /users/1/settings
   def settings
+    render :settings, locals: {user: @user}
   end
 
   # POST /users
@@ -32,7 +36,7 @@ class UsersController < ApplicationController
     @user.save!
     redirect_to root_path, flash: {success: 'Аккаунт успешно создан'}
   rescue
-    render :new
+    render :new, locals: {user: @user}
   end
 
   # PATCH/PUT /users/1
@@ -40,7 +44,7 @@ class UsersController < ApplicationController
     @user.update! user_edit_params
     redirect_to @user, flash: {success: 'Аккаунт успешно обновлен'}
   rescue
-    render :edit
+    render :edit, locals: {user: @user}
   end
 
   # DELETE /users/1
