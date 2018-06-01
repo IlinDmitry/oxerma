@@ -14,9 +14,9 @@ class User < ApplicationRecord
     end
   end
 
-  has_many :users_organizations
+  has_many :employes
   has_many :organizations,
-           through: :users_organizations,
+           through: :employes,
            dependent: :destroy
   has_many :tickets, as: :ticketable
 
@@ -33,6 +33,6 @@ class User < ApplicationRecord
             on: :update
 
   def has_dependencies?
-    users_organizations.any?
+    employes.any?
   end
 end

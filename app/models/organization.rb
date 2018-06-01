@@ -8,9 +8,9 @@ class Organization < ApplicationRecord
 
   resourcify
 
-  has_many :users_organizations
+  has_many :employes
   has_many :users,
-           through: :users_organizations,
+           through: :employes,
            dependent: :destroy
   has_many :tickets, as: :ticketable
 

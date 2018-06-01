@@ -40,4 +40,7 @@ module ApplicationHelper
         flash_type
     end
   end
+  def title(text)
+    content_for :title, text
+  end
 end

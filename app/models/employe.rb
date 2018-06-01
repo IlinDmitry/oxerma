@@ -1,4 +1,4 @@
-class UsersOrganization < ApplicationRecord
+class Employe < ApplicationRecord
   belongs_to :user
   belongs_to :organization
 end
